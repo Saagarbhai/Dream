@@ -1,11 +1,14 @@
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(AuthState.initial()) {
+  late ImagePickerUtils imagePickerUtils;
+
+  AuthBloc(this.imagePickerUtils) : super(AuthState.initial()) {
     on<OnLoginButtonPressEvent>(_onLoginButtonPressEvent);
     on<TogglePasswordVisibilityEvent>(_togglePasswordVisibilityEvent);
     on<OnHobbyChangeEvent>(_onHobbyChangeEvent);
     on<OnGenderChangeEvent>(_onGenderChangeEvent);
+    on<ImagePickedEvent>(_imagePickedEvent);
   }
 
   void _onLoginButtonPressEvent(
@@ -37,5 +40,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _onGenderChangeEvent(OnGenderChangeEvent event, Emitter emit) {
     emit(state.copyWith(gender: event.gender));
+  }
+
+  void _imagePickedEvent(ImagePickedEvent event, Emitter emit) async {
+    XFile? file = await imagePickerUtils.PickImageFromGallary();
+    emit(state.copyWith(file: File(file!.path)));
   }
 }

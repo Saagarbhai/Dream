@@ -34,3 +34,5 @@ class OnGenderChangeEvent extends AuthEvent {
   @override
   List<Object> get props => [gender];
 }
+
+class ImagePickedEvent extends AuthEvent {}

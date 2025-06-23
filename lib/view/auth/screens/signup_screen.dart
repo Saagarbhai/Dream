@@ -31,21 +31,47 @@ class SignUpScreen extends StatelessWidget {
                     CommonAuthDesign(label: text.text_sign_up),
                     LabeledTextField(
                         label: text.lbl_first_name,
+                        hint: text.hint_name,
                         controller: state.signupfirstnameController,
                         inputType: InputType.name),
                     LabeledTextField(
                         label: text.lbl_last_name,
+                        hint: text.hint_name,
                         controller: state.signuplastnameController,
                         inputType: InputType.name),
                     LabeledTextField(
                         label: text.lbl_email,
+                        hint: text.hint_email,
                         controller: state.signupemailController,
                         inputType: InputType.email),
                     LabeledTextField(
                         label: text.lbl_mobile,
+                        hint: text.hint_mobile,
                         controller: state.signupMobileController,
                         inputType: InputType.phoneNumber),
-                    _buildGender(context, state)
+                    _buildGender(context, state),
+                    _buildImageInput(context, state),
+                    LabeledTextField(
+                      label: text.lbl_password,
+                      hint: text.hint_password,
+                      obscureText: state.isPasswordVisible,
+                      controller: state.signuppasswordController,
+                      inputType: InputType.email,
+                      suffixIcon: PasswordVisibilityToggleButton(
+                        isPasswordVisible: state.isPasswordVisible,
+                      ),
+                    ),
+                    LabeledTextField(
+                      label: text.lbl_Confirm_password,
+                      hint: text.hint_password,
+                      controller: state.signupConfirmpassController,
+                      inputType: InputType.email,
+                      obscureText: state.isPasswordVisible,
+                      suffixIcon: PasswordVisibilityToggleButton(
+                        isPasswordVisible: state.isPasswordVisible,
+                      ),
+                    ),
+                    _buildHobbyInput(context, state)
                   ],
                 ),
               ),
@@ -77,6 +103,87 @@ class SignUpScreen extends StatelessWidget {
                 onChanged: (value) {
                   context.read<AuthBloc>().add(OnGenderChangeEvent(value!));
                 }),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildImageInput(BuildContext context, AuthState state) {
+    return CommonImageInput(
+      label: Lang.of(context).text_upload_user_profile,
+      imagePaths: state.file != null ? [state.file!.path.toString()] : [],
+      onTap: () {
+        try {
+          context.read<AuthBloc>().add(ImagePickedEvent());
+        } catch (e) {
+          log(e.toString());
+        }
+      },
+    );
+  }
+
+  Widget _buildHobbyInput(BuildContext context, AuthState state) {
+    final List<String> hobbies = ['Reading', 'Gaming', 'Traveling', 'Cooking'];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Hobby", style: Theme.of(context).textTheme.bodyLarge),
+        SizedBox(
+          height: 10.h,
+        ),
+        Row(
+          children: [
+            CustomCheckbox(
+              value: state.selectedHobbies.contains(hobbies[0]),
+              text: hobbies[0],
+              onChanged: (_) {
+                try {
+                  context.read<AuthBloc>().add(OnHobbyChangeEvent(hobbies[0]));
+                } catch (e) {
+                  log(e.toString());
+                }
+              },
+            ),
+            SizedBox(width: 63.w),
+            CustomCheckbox(
+              value: state.selectedHobbies.contains(hobbies[1]),
+              text: hobbies[1],
+              onChanged: (_) {
+                try {
+                  context.read<AuthBloc>().add(OnHobbyChangeEvent(hobbies[1]));
+                } catch (e) {
+                  log(e.toString());
+                }
+              },
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            CustomCheckbox(
+              value: state.selectedHobbies.contains(hobbies[2]),
+              text: hobbies[2],
+              onChanged: (_) {
+                try {
+                  context.read<AuthBloc>().add(OnHobbyChangeEvent(hobbies[2]));
+                } catch (e) {
+                  log(e.toString());
+                }
+              },
+            ),
+            SizedBox(width: 60.w),
+            CustomCheckbox(
+              value: state.selectedHobbies.contains(hobbies[3]),
+              text: hobbies[3],
+              onChanged: (_) {
+                try {
+                  context.read<AuthBloc>().add(OnHobbyChangeEvent(hobbies[3]));
+                } catch (e) {
+                  log(e.toString());
+                }
+              },
+            ),
           ],
         ),
       ],

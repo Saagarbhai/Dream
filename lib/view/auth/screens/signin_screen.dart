@@ -42,7 +42,7 @@ class SignInScreen extends StatelessWidget {
                   controller: state.signinemailController,
                   inputType: InputType.email),
               LabeledTextField(
-                label: text.lbl_passwoed,
+                label: text.lbl_password,
                 hint: text.hint_password,
                 controller: state.signinpasswordController,
                 inputType: InputType.text,

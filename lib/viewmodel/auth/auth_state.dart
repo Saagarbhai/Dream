@@ -15,6 +15,7 @@ class AuthState extends Equatable {
   final TextEditingController signupMobileController;
   final String gender;
   final List<String> selectedHobbies;
+  final File? file;
   final GlobalKey<FormState> signinformKey = GlobalKey<FormState>();
   final GlobalKey<FormState> signupformkey = GlobalKey<FormState>();
 
@@ -34,6 +35,7 @@ class AuthState extends Equatable {
     GlobalKey<FormState>? signinformKey,
     GlobalKey<FormState>? signupformKey,
     this.gender = 'Male',
+    this.file,
     this.selectedHobbies = const [],
   });
 
@@ -55,6 +57,7 @@ class AuthState extends Equatable {
     Status? signInStatus,
     String? errorMessage,
     bool? isPasswordVisible,
+    File? file,
     GlobalKey<FormState>? signinformKey,
     GlobalKey<FormState>? signupformKey,
     TextEditingController? signinemailController,
@@ -78,6 +81,7 @@ class AuthState extends Equatable {
           signinpasswordController ?? this.signinpasswordController,
       signinformKey: signinformKey,
       signupformKey: signupformKey,
+      file: file ?? this.file,
       signupfirstnameController:
           signupfirstnameController ?? this.signupfirstnameController,
       signuplastnameController:
@@ -96,6 +100,7 @@ class AuthState extends Equatable {
   @override
   List<Object?> get props => [
         gender,
+        file,
         selectedHobbies,
         signInStatus,
         errorMessage,

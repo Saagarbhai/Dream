@@ -166,8 +166,18 @@ class Lang {
   }
 
   /// `Password`
-  String get lbl_passwoed {
-    return Intl.message('Password', name: 'lbl_passwoed', desc: '', args: []);
+  String get lbl_password {
+    return Intl.message('Password', name: 'lbl_password', desc: '', args: []);
+  }
+
+  /// `Confirm Password`
+  String get lbl_Confirm_password {
+    return Intl.message(
+      'Confirm Password',
+      name: 'lbl_Confirm_password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `First Name`

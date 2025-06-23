@@ -20,7 +20,8 @@
   "hint_mobile": "+91",
 
   "lbl_email": "Email",
-  "lbl_passwoed": "Password",
+  "lbl_password": "Password",
+  "lbl_Confirm_password": "Confirm Password",
   "lbl_first_name": "First Name",
   "lbl_last_name": "Last Name",
   "lbl_mobile": "Mobile",

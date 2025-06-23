@@ -94,7 +94,8 @@ class CommonImageInput extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           AppImageView(
-                            imagePath: "assets/images/svgs/icons/ic_cloud.png",
+                            height: 50.h,
+                            imagePath: "assets/images/ic_cloud.png",
                           ),
                           const SizedBox(height: 5),
                           const Text(
