@@ -5,7 +5,8 @@ class AppRoutes {
     return {
       AppConstants.initialRoute: (context) => const SplashScreen(),
       AppConstants.homeRoute: (context) => const HomeScreen(),
-      AppConstants.signinRoute: (context) => const SignInScreen(),
+      AppConstants.signinRoute: (context) => SignInScreen(),
+      AppConstants.signupRoute: (context) => const SignUpScreen(),
     };
   }
 }

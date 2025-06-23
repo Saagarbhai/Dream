@@ -11,17 +11,16 @@ class SplashScreen extends StatelessWidget {
       body: BlocConsumer<SplashBloc, SplashState>(
         listener: (context, state) {
           if (state.splashStatus == Status.success) {
-            Navigator.of(context).pushNamedAndRemoveUntil(
-              AppConstants.homeRoute,
-              (Route<dynamic> route) => false,
-            );
+            try {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppConstants.homeRoute, (route) => false);
+            } catch (e) {
+              log(e.toString());
+            }
           } else if (state.splashStatus == Status.failure) {
             try {
               Navigator.pushNamedAndRemoveUntil(
-                context,
-                AppConstants.signinRoute,
-                (route) => false,
-              );
+                  context, AppConstants.signinRoute, (route) => false);
             } catch (e) {
               log(e.toString());
             }
@@ -38,5 +37,10 @@ class SplashScreen extends StatelessWidget {
 }
 
 Widget _splashscreen() {
-  return AppImageView(imagePath: "assets/images/app_logo/app_logo.svg");
+  return AppImageView(
+    imagePath: "assets/images/app_logo/Group 1000005948.png",
+    height: 100.h,
+    width: 400.h,
+    fit: BoxFit.cover,
+  );
 }

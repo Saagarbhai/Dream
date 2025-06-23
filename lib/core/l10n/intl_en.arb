@@ -1,4 +1,30 @@
 {
   "@@locale": "en",
-  "apptitle":"Dream Vila"
+  "apptitle":"Dream Vila",
+
+  "text_sign_in": "Sign In",
+  "text_sign_up": "Sign Up",
+  "text_forgetpassword": "Forget Password?",
+  "text_YouDoNotHaveAccount": "Don’t have an account ? ",
+  "text_male": "Male",
+  "text_felame": "Female",
+  "text_upload_user_profile": "Upload User Profile",
+  "text_Reading": "Reading",
+  "text_Dreawing": "Dreawing",
+  "text_Writting": "Writting",
+  "text_Photography": "Photography",
+  
+  "hint_email": "abc@gmail.com",
+  "hint_password": "*******",
+  "hint_name": "Name",
+  "hint_mobile": "+91",
+
+  "lbl_email": "Email",
+  "lbl_passwoed": "Password",
+  "lbl_first_name": "First Name",
+  "lbl_last_name": "Last Name",
+  "lbl_mobile": "Mobile",
+  "lbl_gender": "Gender"
+
+ 
 }

@@ -7,10 +7,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => LanguageBloc(),
-        ),
-        BlocProvider(create: (context) => SplashBloc())
+        BlocProvider(create: (context) => LanguageBloc()),
+        BlocProvider(create: (context) => SplashBloc()..add(LoadSplashEvent())),
+        BlocProvider(create: (context) => AuthBloc())
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {

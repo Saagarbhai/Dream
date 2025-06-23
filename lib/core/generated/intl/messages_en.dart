@@ -23,5 +23,32 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "apptitle": MessageLookupByLibrary.simpleMessage("Dream Vila"),
+    "hint_email": MessageLookupByLibrary.simpleMessage("abc@gmail.com"),
+    "hint_mobile": MessageLookupByLibrary.simpleMessage("+91"),
+    "hint_name": MessageLookupByLibrary.simpleMessage("Name"),
+    "hint_password": MessageLookupByLibrary.simpleMessage("*******"),
+    "lbl_email": MessageLookupByLibrary.simpleMessage("Email"),
+    "lbl_first_name": MessageLookupByLibrary.simpleMessage("First Name"),
+    "lbl_gender": MessageLookupByLibrary.simpleMessage("Gender"),
+    "lbl_last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
+    "lbl_mobile": MessageLookupByLibrary.simpleMessage("Mobile"),
+    "lbl_passwoed": MessageLookupByLibrary.simpleMessage("Password"),
+    "text_Dreawing": MessageLookupByLibrary.simpleMessage("Dreawing"),
+    "text_Photography": MessageLookupByLibrary.simpleMessage("Photography"),
+    "text_Reading": MessageLookupByLibrary.simpleMessage("Reading"),
+    "text_Writting": MessageLookupByLibrary.simpleMessage("Writting"),
+    "text_YouDoNotHaveAccount": MessageLookupByLibrary.simpleMessage(
+      "Don’t have an account ? ",
+    ),
+    "text_felame": MessageLookupByLibrary.simpleMessage("Female"),
+    "text_forgetpassword": MessageLookupByLibrary.simpleMessage(
+      "Forget Password?",
+    ),
+    "text_male": MessageLookupByLibrary.simpleMessage("Male"),
+    "text_sign_in": MessageLookupByLibrary.simpleMessage("Sign In"),
+    "text_sign_up": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "text_upload_user_profile": MessageLookupByLibrary.simpleMessage(
+      "Upload User Profile",
+    ),
   };
 }
