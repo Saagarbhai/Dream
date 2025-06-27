@@ -90,6 +90,16 @@ class Lang {
     );
   }
 
+  /// `Already have an account? `
+  String get text_Alreadyhaveaccount {
+    return Intl.message(
+      'Already have an account? ',
+      name: 'text_Alreadyhaveaccount',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Male`
   String get text_male {
     return Intl.message('Male', name: 'text_male', desc: '', args: []);
@@ -110,14 +120,19 @@ class Lang {
     );
   }
 
+  /// `Hobby`
+  String get text_hobby {
+    return Intl.message('Hobby', name: 'text_hobby', desc: '', args: []);
+  }
+
   /// `Reading`
   String get text_Reading {
     return Intl.message('Reading', name: 'text_Reading', desc: '', args: []);
   }
 
-  /// `Dreawing`
-  String get text_Dreawing {
-    return Intl.message('Dreawing', name: 'text_Dreawing', desc: '', args: []);
+  /// `Drawing`
+  String get text_Drawing {
+    return Intl.message('Drawing', name: 'text_Drawing', desc: '', args: []);
   }
 
   /// `Writting`
@@ -133,6 +148,96 @@ class Lang {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Hello!`
+  String get text_hello {
+    return Intl.message('Hello!', name: 'text_hello', desc: '', args: []);
+  }
+
+  /// `+Add Property`
+  String get text_addProperty {
+    return Intl.message(
+      '+Add Property',
+      name: 'text_addProperty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get text_description {
+    return Intl.message(
+      'Description',
+      name: 'text_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Location : `
+  String get text_location {
+    return Intl.message(
+      'Location : ',
+      name: 'text_location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price : `
+  String get text_price {
+    return Intl.message('Price : ', name: 'text_price', desc: '', args: []);
+  }
+
+  /// `Discount : `
+  String get text_discount {
+    return Intl.message(
+      'Discount : ',
+      name: 'text_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rating : `
+  String get text_rating {
+    return Intl.message('Rating : ', name: 'text_rating', desc: '', args: []);
+  }
+
+  /// `Type : `
+  String get text_type {
+    return Intl.message('Type : ', name: 'text_type', desc: '', args: []);
+  }
+
+  /// `Bedroom : `
+  String get text_bedroom {
+    return Intl.message('Bedroom : ', name: 'text_bedroom', desc: '', args: []);
+  }
+
+  /// `Hall : `
+  String get text_hall {
+    return Intl.message('Hall : ', name: 'text_hall', desc: '', args: []);
+  }
+
+  /// `Kitchen : `
+  String get text_kitchen {
+    return Intl.message('Kitchen : ', name: 'text_kitchen', desc: '', args: []);
+  }
+
+  /// `Washroom : `
+  String get text_washroom {
+    return Intl.message(
+      'Washroom : ',
+      name: 'text_washroom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plots : `
+  String get text_plot {
+    return Intl.message('Plots : ', name: 'text_plot', desc: '', args: []);
   }
 
   /// `abc@gmail.com`
@@ -203,6 +308,31 @@ class Lang {
   /// `Gender`
   String get lbl_gender {
     return Intl.message('Gender', name: 'lbl_gender', desc: '', args: []);
+  }
+
+  /// `House`
+  String get lbl_house {
+    return Intl.message('House', name: 'lbl_house', desc: '', args: []);
+  }
+
+  /// `Apartment`
+  String get lbl_apartment {
+    return Intl.message('Apartment', name: 'lbl_apartment', desc: '', args: []);
+  }
+
+  /// `Office`
+  String get lbl_office {
+    return Intl.message('Office', name: 'lbl_office', desc: '', args: []);
+  }
+
+  /// `Land`
+  String get lbl_land {
+    return Intl.message('Land', name: 'lbl_land', desc: '', args: []);
+  }
+
+  /// `Plots`
+  String get lbl_plots {
+    return Intl.message('Plots', name: 'lbl_plots', desc: '', args: []);
   }
 }
 

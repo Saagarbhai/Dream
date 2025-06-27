@@ -36,3 +36,5 @@ class OnGenderChangeEvent extends AuthEvent {
 }
 
 class ImagePickedEvent extends AuthEvent {}
+
+class OnSignUpButtonPressEvent extends AuthEvent {}

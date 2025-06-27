@@ -6,7 +6,7 @@ class AppToast {
     required ToastificationType type,
   }) {
     toastification.show(
-      context: navigatorKey.currentContext!,
+      context: navigatorKey.currentContext,
       title: Text(message),
       type: type,
       style: ToastificationStyle.flatColored,

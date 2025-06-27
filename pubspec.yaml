@@ -42,6 +42,7 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   flutter_localizations:
     sdk: flutter
+  flutter_native_splash: ^2.4.4
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.7
   google_fonts: ^6.2.1
@@ -51,6 +52,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.3
   shimmer: ^3.0.0
+  smooth_page_indicator: ^1.2.1
   toastification: ^3.0.3
 
 dev_dependencies:
@@ -118,3 +120,9 @@ flutter_launcher_icons:
   ios: true
   image_path: "assets/app_icon/app_icon.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/app_icon/app_icon.png
+  android: false
+  ios: false

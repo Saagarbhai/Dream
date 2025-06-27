@@ -1,16 +1,18 @@
 import '../../../core/utils/app_export.dart';
 
-class CommonAuthFooter extends StatelessWidget {
+class CommonAuthBottom extends StatelessWidget {
   final String buttonText;
   final String footerText;
+  final String footerTextButtonText;
   final VoidCallback onActionTap;
   final VoidCallback onButtonTap;
   final bool isLoading;
 
-  const CommonAuthFooter({
+  const CommonAuthBottom({
     super.key,
     required this.buttonText,
     required this.footerText,
+    required this.footerTextButtonText,
     required this.onActionTap,
     required this.onButtonTap,
     this.isLoading = false,
@@ -47,10 +49,10 @@ class CommonAuthFooter extends StatelessWidget {
               footerText,
               style: TextStyle(color: const Color(0xFF000000), fontSize: 15.sp),
             ),
-            InkWell(
+            GestureDetector(
               onTap: onActionTap,
               child: Text(
-                buttonText,
+                footerTextButtonText,
                 style: TextStyle(
                   color: Theme.of(context).customColors.primaryColor,
                   fontSize: 15.sp,

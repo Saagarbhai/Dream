@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -9,18 +10,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<OnHobbyChangeEvent>(_onHobbyChangeEvent);
     on<OnGenderChangeEvent>(_onGenderChangeEvent);
     on<ImagePickedEvent>(_imagePickedEvent);
+    on<OnSignUpButtonPressEvent>(_onSignUpButtonPressEvent);
   }
 
   void _onLoginButtonPressEvent(
       OnLoginButtonPressEvent event, Emitter emit) async {
     emit(state.copyWith(signInStatus: Status.loading));
-    // ignore: unused_local_variable
-    Map<String, dynamic> data = {
-      "email": event.email,
-      "password": event.password
-    };
+    // Map<String, dynamic> data = {
+    //   "email": event.email,
+    //   "password": event.password
+    // };
 
     emit(state.copyWith(signInStatus: Status.success));
+
+    try {
+      if (state.signInStatus == Status.success) {
+        NavigatorService.pushAndRemoveUntil(AppRoutes.homeRoute);
+        state.signinemailController.clear();
+        state.signinpasswordController.clear();
+      }
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   void _togglePasswordVisibilityEvent(
@@ -45,5 +56,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _imagePickedEvent(ImagePickedEvent event, Emitter emit) async {
     XFile? file = await imagePickerUtils.PickImageFromGallary();
     emit(state.copyWith(file: File(file!.path)));
+  }
+
+  void _onSignUpButtonPressEvent(OnSignUpButtonPressEvent event, Emitter emit) {
+    emit(state.copyWith(signInStatus: Status.success));
+
+    try {
+      if (state.signInStatus == Status.success) {
+        NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
+        state.signupemailController.clear();
+        state.signupfirstnameController.clear();
+        state.signuplastnameController.clear();
+        state.signupMobileController.clear();
+        state.signuppasswordController.clear();
+        state.signupConfirmpassController.clear();
+      }
+    } catch (e) {
+      log(e.toString());
+    }
   }
 }

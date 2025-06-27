@@ -2,26 +2,29 @@ import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class SignInScreen extends StatelessWidget {
+  static Widget builder(BuildContext context) {
+    return const SignInScreen();
+  }
+
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final text = Lang.of(context);
     return Scaffold(
-      body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
-          try {
+      body: SingleChildScrollView(
+        child: BlocConsumer<AuthBloc, AuthState>(
+          builder: (context, state) {
+            return build_signin_screen(text, state, context);
+          },
+          listener: (BuildContext context, state) {
             if (state.signInStatus == Status.success) {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppConstants.homeRoute, (route) => false);
+              AppToast.show(
+                  message: "Login successful",
+                  type: ToastificationType.success);
             }
-          } catch (e) {
-            log(e.toString());
-          }
-        },
-        builder: (context, state) {
-          return build_signin_screen(text, state, context);
-        },
+          },
+        ),
       ),
     );
   }
@@ -53,24 +56,23 @@ class SignInScreen extends StatelessWidget {
                 textButton: build_text_button(text),
               ),
               SizedBox(height: 20.h),
-              CommonAuthFooter(
+              CommonAuthBottom(
                 buttonText: text.text_sign_up,
                 footerText: text.text_YouDoNotHaveAccount,
+                footerTextButtonText: text.text_sign_in,
                 isLoading: state.signInStatus == Status.loading,
                 onActionTap: () {
                   try {
-                    Navigator.pushNamed(context, AppConstants.signupRoute);
+                    NavigatorService.pushNamedAndRemoveUntil(
+                        AppRoutes.signupRoute);
                   } catch (e) {
                     log(e.toString());
                   }
                 },
                 onButtonTap: () {
-                  try {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, AppConstants.homeRoute, (route) => false);
-                  } catch (e) {
-                    log(e.toString());
-                  }
+                  context.read<AuthBloc>().add(OnLoginButtonPressEvent(
+                      state.signinemailController.text.trim(),
+                      state.signinpasswordController.text.trim()));
                 },
               ),
             ],

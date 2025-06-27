@@ -9,7 +9,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LanguageBloc()),
         BlocProvider(create: (context) => SplashBloc()..add(LoadSplashEvent())),
-        BlocProvider(create: (context) => AuthBloc(ImagePickerUtils()))
+        BlocProvider(create: (context) => AuthBloc(ImagePickerUtils())),
+        BlocProvider(create: (context) => HomeBloc()),
+        BlocProvider(create: (context) => DetailsBloc())
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
             splitScreenMode: true,
             builder: (_, child) {
               return MaterialApp(
-                navigatorKey: navigatorKey,
+                navigatorKey: NavigatorService.navigatorKey,
                 title: AppConstants.appName,
                 theme: MyAppThemeHelper.lightTheme,
                 locale: locale,
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
                   Locale('en'),
                 ],
                 localizationsDelegates: localizationDelegates,
-                initialRoute: AppConstants.initialRoute,
+                initialRoute: AppRoutes.initialRoute,
                 routes: AppRoutes.routes,
                 debugShowCheckedModeBanner: false,
               );

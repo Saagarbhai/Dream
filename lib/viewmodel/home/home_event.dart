@@ -1,0 +1,12 @@
+import 'package:dreamvila/core/utils/app_export.dart';
+
+abstract class HomeEvent extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+
+class OnTabIndexChangeEvent extends HomeEvent {
+  final int index;
+
+  OnTabIndexChangeEvent(this.index);
+}

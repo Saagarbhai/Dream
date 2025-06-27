@@ -6,14 +6,29 @@
   "text_sign_up": "Sign Up",
   "text_forgetpassword": "Forget Password?",
   "text_YouDoNotHaveAccount": "Don’t have an account ? ",
+  "text_Alreadyhaveaccount": "Already have an account? ",
   "text_male": "Male",
   "text_felame": "Female",
   "text_upload_user_profile": "Upload User Profile",
+  "text_hobby": "Hobby",
   "text_Reading": "Reading",
-  "text_Dreawing": "Dreawing",
-  "text_Writting": "Writting",
+  "text_Drawing": "Drawing",
+  "text_Writting": "Writting", 
   "text_Photography": "Photography",
-  
+  "text_hello": "Hello!",
+  "text_addProperty": "+Add Property",
+  "text_description": "Description",
+  "text_location": "Location : ",
+  "text_price": "Price : ",
+  "text_discount": "Discount : ",
+  "text_rating": "Rating : ",
+  "text_type": "Type : ",
+  "text_bedroom": "Bedroom : ",
+  "text_hall": "Hall : ",
+  "text_kitchen": "Kitchen : ",
+  "text_washroom": "Washroom : ",
+  "text_plot": "Plots : ",
+
   "hint_email": "abc@gmail.com",
   "hint_password": "*******",
   "hint_name": "Name",
@@ -25,7 +40,10 @@
   "lbl_first_name": "First Name",
   "lbl_last_name": "Last Name",
   "lbl_mobile": "Mobile",
-  "lbl_gender": "Gender"
-
- 
+  "lbl_gender": "Gender",
+  "lbl_house":"House",
+  "lbl_apartment":"Apartment",
+  "lbl_office":"Office",
+  "lbl_land":"Land",
+  "lbl_plots":"Plots"
 }

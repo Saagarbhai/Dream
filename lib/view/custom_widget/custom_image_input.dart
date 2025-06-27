@@ -36,7 +36,7 @@ class CommonImageInput extends StatelessWidget {
             color: Colors.black,
             strokeWidth: 1,
             borderType: BorderType.RRect,
-            radius: const Radius.circular(12),
+            radius: Radius.circular(12.r),
             dashPattern: const [13, 13],
             child: GestureDetector(
               onTap: onTap,
@@ -74,7 +74,7 @@ class CommonImageInput extends StatelessWidget {
                               },
                             )
                           : ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(10.r),
                               child: Image.file(
                                 File(imagePaths.first),
                                 fit: BoxFit.cover,
@@ -88,7 +88,7 @@ class CommonImageInput extends StatelessWidget {
                       width: width,
                       decoration: BoxDecoration(
                         color: const Color(0xFFF8F8F8),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
