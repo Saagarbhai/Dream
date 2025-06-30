@@ -58,7 +58,6 @@ class LabeledTextField extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(height: 15.h),
       ],
     );
   }

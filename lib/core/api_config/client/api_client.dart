@@ -23,15 +23,20 @@ class ApiClient {
   }
 
   Future<void> _initializeHeaders() async {
-    final headers = _buildHeaders();
+    final headers = await _buildHeaders();
     _dio.options.headers = headers;
   }
 
   // --------------------------- HEADERS ---------------------------
 
-  static Map<String, String> _buildHeaders() {
+  static Future<Map<String, String>> _buildHeaders() async {
+    final storage = FlutterSecureStorage();
     final header = <String, String>{'Content-Type': 'application/json'};
+    String? deviceToken = await storage.read(key: "deviceToken");
 
+    if (deviceToken != null && deviceToken.isNotEmpty) {
+      header['Authorization'] = 'Bearer $deviceToken';
+    }
     return header;
   }
 

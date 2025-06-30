@@ -2,6 +2,9 @@ import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  final AuthRepository authRepository = AuthRepository(ApiClient());
+  final SharedPreferencesService sharedPreferencesService =
+      SharedPreferencesService();
   late ImagePickerUtils imagePickerUtils;
 
   AuthBloc(this.imagePickerUtils) : super(AuthState.initial()) {
@@ -16,21 +19,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _onLoginButtonPressEvent(
       OnLoginButtonPressEvent event, Emitter emit) async {
     emit(state.copyWith(signInStatus: Status.loading));
-    // Map<String, dynamic> data = {
-    //   "email": event.email,
-    //   "password": event.password
-    // };
+    Map<String, dynamic> data = {
+      "email": event.email,
+      "password": event.password
+    };
+    final storage = FlutterSecureStorage();
 
-    emit(state.copyWith(signInStatus: Status.success));
-
-    try {
-      if (state.signInStatus == Status.success) {
-        NavigatorService.pushAndRemoveUntil(AppRoutes.homeRoute);
-        state.signinemailController.clear();
-        state.signinpasswordController.clear();
-      }
-    } catch (e) {
-      log(e.toString());
+    final result = await authRepository.logInRepo(data);
+    if (result.status) {
+      await storage.write(key: "deviceToken", value: result.token);
+      sharedPreferencesService.storeUserIsLogin(true);
+      emit(state.copyWith(signInStatus: Status.success));
+      NavigatorService.pushNamedAndRemoveUntil(AppRoutes.homeRoute);
+      state.signinemailController.clear();
+      state.signinpasswordController.clear();
+    } else {
+      emit(state.copyWith(signInStatus: Status.failure));
     }
   }
 

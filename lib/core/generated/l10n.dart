@@ -265,6 +265,56 @@ class Lang {
     return Intl.message('+91', name: 'hint_mobile', desc: '', args: []);
   }
 
+  /// `Address`
+  String get hint_address {
+    return Intl.message('Address', name: 'hint_address', desc: '', args: []);
+  }
+
+  /// `Price`
+  String get hint_price {
+    return Intl.message('Price', name: 'hint_price', desc: '', args: []);
+  }
+
+  /// `Discount in Percentage`
+  String get hint_discount {
+    return Intl.message(
+      'Discount in Percentage',
+      name: 'hint_discount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rating`
+  String get hint_rating {
+    return Intl.message('Rating', name: 'hint_rating', desc: '', args: []);
+  }
+
+  /// `Plots`
+  String get hint_plots {
+    return Intl.message('Plots', name: 'hint_plots', desc: '', args: []);
+  }
+
+  /// `Bedroom`
+  String get hint_bedroom {
+    return Intl.message('Bedroom', name: 'hint_bedroom', desc: '', args: []);
+  }
+
+  /// `Hall`
+  String get hint_hall {
+    return Intl.message('Hall', name: 'hint_hall', desc: '', args: []);
+  }
+
+  /// `Kitchen`
+  String get hint_kitchen {
+    return Intl.message('Kitchen', name: 'hint_kitchen', desc: '', args: []);
+  }
+
+  /// `Washroom`
+  String get hint_washroom {
+    return Intl.message('Washroom', name: 'hint_washroom', desc: '', args: []);
+  }
+
   /// `Email`
   String get lbl_email {
     return Intl.message('Email', name: 'lbl_email', desc: '', args: []);
@@ -333,6 +383,141 @@ class Lang {
   /// `Plots`
   String get lbl_plots {
     return Intl.message('Plots', name: 'lbl_plots', desc: '', args: []);
+  }
+
+  /// `Property's Name`
+  String get lbl_Property_name {
+    return Intl.message(
+      'Property\'s Name',
+      name: 'lbl_Property_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Description`
+  String get lbl_Property_Description {
+    return Intl.message(
+      'Property\'s Description',
+      name: 'lbl_Property_Description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Address`
+  String get lbl_Property_Address {
+    return Intl.message(
+      'Property\'s Address',
+      name: 'lbl_Property_Address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Price`
+  String get lbl_Property_Price {
+    return Intl.message(
+      'Property\'s Price',
+      name: 'lbl_Property_Price',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Discount(In Percentage)`
+  String get lbl_Property_DiscountPercentage {
+    return Intl.message(
+      'Property\'s Discount(In Percentage)',
+      name: 'lbl_Property_DiscountPercentage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's rating`
+  String get lbl_property_Rating {
+    return Intl.message(
+      'Property\'s rating',
+      name: 'lbl_property_Rating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Plots`
+  String get lbl_Property_Plot {
+    return Intl.message(
+      'Property\'s Plots',
+      name: 'lbl_Property_Plot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Type`
+  String get lbl_Property_type {
+    return Intl.message(
+      'Property\'s Type',
+      name: 'lbl_Property_type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Bedroom`
+  String get lbl_Property_bedroom {
+    return Intl.message(
+      'Property\'s Bedroom',
+      name: 'lbl_Property_bedroom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Hall`
+  String get lbl_Property_hall {
+    return Intl.message(
+      'Property\'s Hall',
+      name: 'lbl_Property_hall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Kitchen`
+  String get lbl_Property_kitchen {
+    return Intl.message(
+      'Property\'s Kitchen',
+      name: 'lbl_Property_kitchen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Washroom`
+  String get lbl_Property_Washroom {
+    return Intl.message(
+      'Property\'s Washroom',
+      name: 'lbl_Property_Washroom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property's Images`
+  String get lbl_Property_image {
+    return Intl.message(
+      'Property\'s Images',
+      name: 'lbl_Property_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get lbl_on_submit {
+    return Intl.message('Submit', name: 'lbl_on_submit', desc: '', args: []);
   }
 }
 

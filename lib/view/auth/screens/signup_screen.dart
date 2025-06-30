@@ -90,12 +90,20 @@ class SignUpScreen extends StatelessWidget {
                           }
                         },
                         onButtonTap: () {
-                          FocusNode().unfocus();
-                          try {
-                            NavigatorService.popAndPushNamed(
-                                AppRoutes.signinRoute);
-                          } catch (e) {
-                            log(e.toString());
+                          if (state.signupformkey.currentState!.validate()) {
+                            final user = SignupModel(
+                              firstName: state.signupfirstnameController.text,
+                              lastName: state.signuplastnameController.text,
+                              email: state.signupemailController.text,
+                              mobile: state.signupMobileController.text,
+                              gender: state.gender == text.text_male ? 1 : 2,
+                              hobbies: state.selectedHobbies.join(','),
+                              image: state.file,
+                              password: state.signuppasswordController.text,
+                            );
+                            context
+                                .read<AuthBloc>()
+                                .add(OnSignUpButtonPressEvent(user));
                           }
                         },
                       ),

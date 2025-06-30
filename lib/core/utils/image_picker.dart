@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class ImagePickerUtils {
@@ -14,7 +15,15 @@ class ImagePickerUtils {
   }
 
   Future<List<XFile>?> pickMultipleImageFromGallery() async {
-    final List<XFile> file = await imagePicker.pickMultiImage();
-    return file;
+    try {
+      final pickedFiles = await ImagePicker().pickMultiImage();
+      if (pickedFiles.isNotEmpty) {
+        return pickedFiles;
+      }
+      return null;
+    } catch (e) {
+      log("Image picker error: $e");
+      return null;
+    }
   }
 }

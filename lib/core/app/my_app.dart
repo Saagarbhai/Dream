@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SplashBloc()..add(LoadSplashEvent())),
         BlocProvider(create: (context) => AuthBloc(ImagePickerUtils())),
         BlocProvider(create: (context) => HomeBloc()),
-        BlocProvider(create: (context) => DetailsBloc())
+        BlocProvider(create: (context) => DetailsBloc()),
+        BlocProvider(create: (context) => AddupdateBloc())
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {

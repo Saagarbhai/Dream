@@ -37,4 +37,11 @@ class OnGenderChangeEvent extends AuthEvent {
 
 class ImagePickedEvent extends AuthEvent {}
 
-class OnSignUpButtonPressEvent extends AuthEvent {}
+class OnSignUpButtonPressEvent extends AuthEvent {
+  final SignupModel formData;
+
+  const OnSignUpButtonPressEvent(this.formData);
+
+  @override
+  List<Object> get props => [formData];
+}

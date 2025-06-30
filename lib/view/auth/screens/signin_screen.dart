@@ -70,9 +70,11 @@ class SignInScreen extends StatelessWidget {
                   }
                 },
                 onButtonTap: () {
-                  context.read<AuthBloc>().add(OnLoginButtonPressEvent(
-                      state.signinemailController.text.trim(),
-                      state.signinpasswordController.text.trim()));
+                  if (state.signinformKey.currentState!.validate()) {
+                    context.read<AuthBloc>().add(OnLoginButtonPressEvent(
+                        state.signinemailController.text,
+                        state.signinpasswordController.text));
+                  }
                 },
               ),
             ],

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class PropertyCard extends StatelessWidget {
@@ -25,7 +24,9 @@ class PropertyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: () {},
+      onLongPressStart: (details) {
+        showContextMenu(context, details.globalPosition);
+      },
       onTap: () {
         try {
           NavigatorService.pushNamed(AppRoutes.detailsRoute);
