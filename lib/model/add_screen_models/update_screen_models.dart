@@ -73,10 +73,11 @@ class ProductUpdateData {
       kitchen: json['kitchen'] ?? 0,
       washroom: json['washroom'] ?? 0,
       thumbnail: json['thumbnail'] ?? '',
-      images: (json['images'] as List<dynamic>?)
-              ?.map((e) => e.toString())
-              .toList() ??
-          [],
+      images: json['images'] is List
+              ? (json['images'] as List).map((e) => e.toString()).toList()
+              : json['images'] is String && json['images'].toString().isNotEmpty
+                  ? [json['images'].toString()]
+                  : [],
       userId: json['userId'] ?? '',
     );
   }

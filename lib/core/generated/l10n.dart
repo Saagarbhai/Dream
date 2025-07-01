@@ -175,6 +175,16 @@ class Lang {
     );
   }
 
+  /// `Description :`
+  String get text_description2 {
+    return Intl.message(
+      'Description :',
+      name: 'text_description2',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Location : `
   String get text_location {
     return Intl.message(

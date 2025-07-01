@@ -177,7 +177,12 @@ class HomeScreen extends StatelessWidget {
           previous.index != current.index,
       builder: (context, state) {
         if (state.propertyStatus == Status.loading) {
-          return const Center(child: CircularProgressIndicator());
+          return Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) => const PropertyCardShimmer(),
+            ),
+          );
         } else if (state.propertyStatus == Status.success) {
           if (filteredData == null || filteredData.isEmpty) {
             return Expanded(

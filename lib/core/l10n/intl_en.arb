@@ -18,6 +18,7 @@
   "text_hello": "Hello!",
   "text_addProperty": "+Add Property",
   "text_description": "Description",
+  "text_description2": "Description :",
   "text_location": "Location : ",
   "text_price": "Price : ",
   "text_discount": "Discount : ",

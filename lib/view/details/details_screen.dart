@@ -2,7 +2,9 @@ import '../../core/utils/app_export.dart';
 
 class DetailsScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
-    return DetailsScreen(id: '');
+    final String id =
+        ModalRoute.of(context)?.settings.arguments as String? ?? '';
+    return DetailsScreen(id: id);
   }
 
   final String id;
@@ -15,6 +17,9 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<DetailsBloc, DetailsState>(
         builder: (context, state) {
+          if (state.detailPageStatus == Status.loading) {
+            return const DetailsScreenShimmer();
+          }
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,49 +95,72 @@ class DetailsScreen extends StatelessWidget {
               _buildTextMedium(state.data!.data!.description, context),
               SizedBox(height: 20.h),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 15.h,
-                    children: [
-                      _buildTextLarge(text.text_location, context),
-                      _buildTextLarge(text.text_price, context),
-                      _buildTextLarge(text.text_description, context),
-                      _buildTextLarge(text.text_rating, context),
-                      _buildTextLarge(text.text_type, context),
-                      _buildTextLarge(text.text_plot, context),
-                      _buildTextLarge(text.text_bedroom, context),
-                      _buildTextLarge(text.text_hall, context),
-                      _buildTextLarge(text.text_kitchen, context),
-                      _buildTextLarge(text.text_washroom, context)
-                    ],
+                  SizedBox(
+                    width: 0.3.sw,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildTextLarge(text.text_location, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_price, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_description2, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_rating, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_type, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_plot, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_bedroom, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_hall, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_kitchen, context),
+                        SizedBox(height: 15.h),
+                        _buildTextLarge(text.text_washroom, context)
+                      ],
+                    ),
                   ),
                   SizedBox(width: 20.w),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 15.h,
-                    children: [
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.address, context),
-                      _buildTextWithPrimatyColor(
-                          '\$ ${state.data!.data!.price.toString()}', context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.description, context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.rating.toString(), context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.type, context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.plot.toString(), context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.bedroom.toString(), context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.hall.toString(), context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.kitchen.toString(), context),
-                      _buildTextWithPrimatyColor(
-                          state.data!.data!.washroom.toString(), context)
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.address, context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            '\$ ${state.data!.data!.price.toString()}',
+                            context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.description, context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.rating.toString(), context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.type, context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.plot.toString(), context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.bedroom.toString(), context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.hall.toString(), context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.kitchen.toString(), context),
+                        SizedBox(height: 15.h),
+                        _buildTextWithPrimatyColor(
+                            state.data!.data!.washroom.toString(), context)
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -225,11 +253,16 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextWithPrimatyColor(String label, BuildContext context) {
+  Widget _buildTextWithPrimatyColor(
+    String label,
+    BuildContext context,
+  ) {
     return Text(
       label,
       style: Theme.of(context).textTheme.titleLarge!.copyWith(
           color: Theme.of(context).colorScheme.primary, fontSize: 18.sp),
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

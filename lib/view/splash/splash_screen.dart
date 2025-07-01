@@ -11,36 +11,36 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocConsumer<SplashBloc, SplashState>(
-        listener: (context, state) {
-          if (state.splashStatus == Status.success) {
-            try {
-              NavigatorService.pushAndRemoveUntil(AppRoutes.homeRoute);
-            } catch (e) {
-              log(e.toString());
-            }
-          } else if (state.splashStatus == Status.failure) {
-            try {
-              NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
-            } catch (e) {
-              log(e.toString());
-            }
-          }
-        },
-        builder: (context, state) {
-          return Center(
-            child: _splashscreen(),
-          );
-        },
-      ),
+      body: _build_splash_screen(),
     );
   }
-}
 
-Widget _splashscreen() {
-  return AppImageView(
-    imagePath: "assets/images/app_logo/Group 1000005948.png",
-    height: 70.h,
-    fit: BoxFit.fill,
-  );
+  Widget _build_splash_screen() {
+    return BlocConsumer<SplashBloc, SplashState>(
+      listener: (context, state) {
+        if (state.splashStatus == Status.success) {
+          try {
+            NavigatorService.pushAndRemoveUntil(AppRoutes.homeRoute);
+          } catch (e) {
+            log(e.toString());
+          }
+        } else if (state.splashStatus == Status.failure) {
+          try {
+            NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
+          } catch (e) {
+            log(e.toString());
+          }
+        }
+      },
+      builder: (context, state) {
+        return Center(
+          child: AppImageView(
+            imagePath: "assets/images/app_logo/Group 1000005948.png",
+            height: 70.h,
+            fit: BoxFit.fill,
+          ),
+        );
+      },
+    );
+  }
 }

@@ -86,3 +86,5 @@ export 'package:dreamvila/repository/property_repositotry.dart';
 export 'package:dreamvila/model/add_screen_models/update_screen_models.dart';
 export 'package:dreamvila/model/home_screens_models/add_propertry_model.dart';
 export 'package:dreamvila/model/details_screen_models/details_screen_models.dart';
+export 'package:dreamvila/view/home/widget/property_card_shimmer.dart';
+export 'package:dreamvila/view/details/widget/details_shimmer.dart';

@@ -112,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "text_addProperty": MessageLookupByLibrary.simpleMessage("+Add Property"),
     "text_bedroom": MessageLookupByLibrary.simpleMessage("Bedroom : "),
     "text_description": MessageLookupByLibrary.simpleMessage("Description"),
+    "text_description2": MessageLookupByLibrary.simpleMessage("Description :"),
     "text_discount": MessageLookupByLibrary.simpleMessage("Discount : "),
     "text_felame": MessageLookupByLibrary.simpleMessage("Female"),
     "text_forgetpassword": MessageLookupByLibrary.simpleMessage(

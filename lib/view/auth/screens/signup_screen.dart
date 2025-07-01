@@ -16,101 +16,105 @@ class SignUpScreen extends StatelessWidget {
       child: Scaffold(
         body: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: SafeArea(
-                minimum: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                child: Form(
-                  key: state.signupformkey,
-                  child: Column(
-                    spacing: 10.h,
-                    children: [
-                      CommonAuthDesign(label: text.text_sign_up),
-                      LabeledTextField(
-                          label: text.lbl_first_name,
-                          hint: text.hint_name,
-                          controller: state.signupfirstnameController,
-                          inputType: InputType.name),
-                      LabeledTextField(
-                          label: text.lbl_last_name,
-                          hint: text.hint_name,
-                          controller: state.signuplastnameController,
-                          inputType: InputType.name),
-                      LabeledTextField(
-                          label: text.lbl_email,
-                          hint: text.hint_email,
-                          controller: state.signupemailController,
-                          inputType: InputType.email),
-                      LabeledTextField(
-                          label: text.lbl_mobile,
-                          hint: text.hint_mobile,
-                          maxLenth: 10,
-                          controller: state.signupMobileController,
-                          inputType: InputType.phoneNumber),
-                      _buildGender(context, state),
-                      _buildImageInput(context, state),
-                      SizedBox(height: 5.h),
-                      LabeledTextField(
-                        label: text.lbl_password,
-                        hint: text.hint_password,
-                        obscureText: state.isPasswordVisible,
-                        controller: state.signuppasswordController,
-                        inputType: InputType.email,
-                        maxLenth: 15,
-                        suffixIcon: PasswordVisibilityToggleButton(
-                          isPasswordVisible: state.isPasswordVisible,
-                        ),
-                      ),
-                      LabeledTextField(
-                        label: text.lbl_Confirm_password,
-                        hint: text.hint_password,
-                        controller: state.signupConfirmpassController,
-                        inputType: InputType.email,
-                        maxLenth: 15,
-                        obscureText: state.isPasswordVisible,
-                        suffixIcon: PasswordVisibilityToggleButton(
-                          isPasswordVisible: state.isPasswordVisible,
-                        ),
-                      ),
-                      _buildHobbyInput(context, state),
-                      SizedBox(height: 20.h),
-                      CommonAuthBottom(
-                        buttonText: text.text_sign_up,
-                        footerTextButtonText: text.text_sign_in,
-                        footerText: text.text_Alreadyhaveaccount,
-                        isLoading: state.signUpStatus == Status.loading,
-                        onActionTap: () {
-                          try {
-                            NavigatorService.pushNamedAndRemoveUntil(
-                                AppRoutes.signinRoute);
-                          } catch (e) {
-                            log(e.toString());
-                          }
-                        },
-                        onButtonTap: () {
-                          if (state.signupformkey.currentState!.validate()) {
-                            final user = SignupModel(
-                              firstName: state.signupfirstnameController.text,
-                              lastName: state.signuplastnameController.text,
-                              email: state.signupemailController.text,
-                              mobile: state.signupMobileController.text,
-                              gender: state.gender == text.text_male ? 1 : 2,
-                              hobbies: state.selectedHobbies.join(','),
-                              image: state.file,
-                              password: state.signuppasswordController.text,
-                            );
-                            context
-                                .read<AuthBloc>()
-                                .add(OnSignUpButtonPressEvent(user));
-                          }
-                        },
-                      ),
-                      SizedBox(height: 20.h)
-                    ],
-                  ),
+            return _build_text_fileds(state, text, context);
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _build_text_fileds(AuthState state, Lang text, BuildContext context) {
+    return SingleChildScrollView(
+      child: SafeArea(
+        minimum: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+        child: Form(
+          key: state.signupformkey,
+          child: Column(
+            spacing: 10.h,
+            children: [
+              CommonAuthDesign(label: text.text_sign_up),
+              LabeledTextField(
+                  label: text.lbl_first_name,
+                  hint: text.hint_name,
+                  controller: state.signupfirstnameController,
+                  inputType: InputType.name),
+              LabeledTextField(
+                  label: text.lbl_last_name,
+                  hint: text.hint_name,
+                  controller: state.signuplastnameController,
+                  inputType: InputType.name),
+              LabeledTextField(
+                  label: text.lbl_email,
+                  hint: text.hint_email,
+                  controller: state.signupemailController,
+                  inputType: InputType.email),
+              LabeledTextField(
+                  label: text.lbl_mobile,
+                  hint: text.hint_mobile,
+                  maxLenth: 10,
+                  controller: state.signupMobileController,
+                  inputType: InputType.phoneNumber),
+              _buildGender(context, state),
+              _buildImageInput(context, state),
+              SizedBox(height: 5.h),
+              LabeledTextField(
+                label: text.lbl_password,
+                hint: text.hint_password,
+                obscureText: state.isPasswordVisible,
+                controller: state.signuppasswordController,
+                inputType: InputType.email,
+                maxLenth: 15,
+                suffixIcon: PasswordVisibilityToggleButton(
+                  isPasswordVisible: state.isPasswordVisible,
                 ),
               ),
-            );
-          },
+              LabeledTextField(
+                label: text.lbl_Confirm_password,
+                hint: text.hint_password,
+                controller: state.signupConfirmpassController,
+                inputType: InputType.email,
+                maxLenth: 15,
+                obscureText: state.isPasswordVisible,
+                suffixIcon: PasswordVisibilityToggleButton(
+                  isPasswordVisible: state.isPasswordVisible,
+                ),
+              ),
+              _buildHobbyInput(context, state),
+              SizedBox(height: 20.h),
+              CommonAuthBottom(
+                buttonText: text.text_sign_up,
+                footerTextButtonText: text.text_sign_in,
+                footerText: text.text_Alreadyhaveaccount,
+                isLoading: state.signUpStatus == Status.loading,
+                onActionTap: () {
+                  try {
+                    NavigatorService.pushNamedAndRemoveUntil(
+                        AppRoutes.signinRoute);
+                  } catch (e) {
+                    log(e.toString());
+                  }
+                },
+                onButtonTap: () {
+                  if (state.signupformkey.currentState!.validate()) {
+                    final user = SignupModel(
+                      firstName: state.signupfirstnameController.text,
+                      lastName: state.signuplastnameController.text,
+                      email: state.signupemailController.text,
+                      mobile: state.signupMobileController.text,
+                      gender: state.gender == text.text_male ? 1 : 2,
+                      hobbies: state.selectedHobbies.join(','),
+                      image: state.file,
+                      password: state.signuppasswordController.text,
+                    );
+                    context
+                        .read<AuthBloc>()
+                        .add(OnSignUpButtonPressEvent(user));
+                  }
+                },
+              ),
+              SizedBox(height: 20.h)
+            ],
+          ),
         ),
       ),
     );
