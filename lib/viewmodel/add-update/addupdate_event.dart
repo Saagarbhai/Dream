@@ -20,3 +20,20 @@ class CancelImageEvent extends AddupdateEvent {
   @override
   List<Object> get props => [index];
 }
+
+class OnSubmitbuttonpressedEvent extends AddupdateEvent {
+  final bool isUpdate;
+  final String? id;
+  OnSubmitbuttonpressedEvent(this.isUpdate, {this.id});
+  @override
+  List<Object?> get props => [isUpdate, id];
+}
+
+class UpdatebuttonpressedEvent extends AddupdateEvent {
+  final Property property;
+  UpdatebuttonpressedEvent(this.property);
+  @override
+  List<Object> get props => [property];
+}
+
+class DisposeEvent extends AddupdateEvent {}

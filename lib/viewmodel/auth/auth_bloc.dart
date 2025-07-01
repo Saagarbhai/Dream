@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -26,7 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final storage = FlutterSecureStorage();
 
     final result = await authRepository.logInRepo(data);
-    if (result.status) {
+
+    if (result.status == true) {
       await storage.write(key: "deviceToken", value: result.token);
       sharedPreferencesService.storeUserIsLogin(true);
       emit(state.copyWith(signInStatus: Status.success));
@@ -62,21 +62,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(state.copyWith(file: File(file!.path)));
   }
 
-  void _onSignUpButtonPressEvent(OnSignUpButtonPressEvent event, Emitter emit) {
-    emit(state.copyWith(signInStatus: Status.success));
+  void _onSignUpButtonPressEvent(
+      OnSignUpButtonPressEvent event, Emitter emit) async {
+    emit(state.copyWith(signUpStatus: Status.loading));
+    Map<String, dynamic> data = {
+      'image': [event.formData.image!.path],
+      'firstName': event.formData.firstName,
+      'lastName': event.formData.lastName,
+      'gender': event.formData.gender.toString(),
+      'hobby': event.formData.hobbies,
+      'email': event.formData.email,
+      'mobile': event.formData.mobile.toString(),
+      'password': event.formData.password
+    };
+    final result = await authRepository.signUpRepo(data);
 
-    try {
-      if (state.signInStatus == Status.success) {
-        NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
-        state.signupemailController.clear();
-        state.signupfirstnameController.clear();
-        state.signuplastnameController.clear();
-        state.signupMobileController.clear();
-        state.signuppasswordController.clear();
-        state.signupConfirmpassController.clear();
-      }
-    } catch (e) {
-      log(e.toString());
+    if (result.status == true) {
+      emit(state.copyWith(signUpStatus: Status.success));
+      NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
+      state.signupemailController.clear();
+      state.signupfirstnameController.clear();
+      state.signuplastnameController.clear();
+      state.signupMobileController.clear();
+      state.signuppasswordController.clear();
+      state.signupConfirmpassController.clear();
+      state.selectedHobbies.clear();
+      emit(state.copyWith(file: null));
+    } else {
+      emit(state.copyWith(signUpStatus: Status.failure));
     }
   }
 }

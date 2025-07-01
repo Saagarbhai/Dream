@@ -68,5 +68,6 @@
   "lbl_Property_kitchen": "Property's Kitchen",
   "lbl_Property_Washroom" : "Property's Washroom",
   "lbl_Property_image": "Property's Images",
-  "lbl_on_submit": "Submit"
+  "lbl_on_submit": "Submit",
+  "lbl_no_data_found" : "No Data Found..."
 }

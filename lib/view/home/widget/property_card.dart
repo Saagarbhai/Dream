@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class PropertyCard extends StatelessWidget {
@@ -8,6 +7,9 @@ class PropertyCard extends StatelessWidget {
   final int plots;
   final int discount;
   final double rating;
+  final VoidCallback on_tap;
+  final VoidCallback on_updatetap;
+  final VoidCallback on_deletetap;
   final int price;
 
   const PropertyCard({
@@ -18,6 +20,9 @@ class PropertyCard extends StatelessWidget {
     required this.plots,
     required this.discount,
     required this.rating,
+    required this.on_tap,
+    required this.on_updatetap,
+    required this.on_deletetap,
     required this.price,
   });
 
@@ -25,15 +30,14 @@ class PropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPressStart: (details) {
-        showContextMenu(context, details.globalPosition);
+        showContextMenu(
+          context,
+          details.globalPosition,
+          on_updatetap,
+          on_deletetap,
+        );
       },
-      onTap: () {
-        try {
-          NavigatorService.pushNamed(AppRoutes.detailsRoute);
-        } catch (e) {
-          log(e.toString());
-        }
-      },
+      onTap: on_tap,
       child: Card(
         margin: EdgeInsets.symmetric(vertical: 3.h),
         elevation: 5,

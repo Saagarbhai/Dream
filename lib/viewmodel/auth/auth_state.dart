@@ -55,6 +55,7 @@ class AuthState extends Equatable {
     String? gender,
     List<String>? selectedHobbies,
     Status? signInStatus,
+    Status? signUpStatus,
     String? errorMessage,
     bool? isPasswordVisible,
     File? file,
@@ -73,6 +74,7 @@ class AuthState extends Equatable {
       gender: gender ?? this.gender,
       selectedHobbies: selectedHobbies ?? this.selectedHobbies,
       signInStatus: signInStatus ?? this.signInStatus,
+      signUpStatus: signUpStatus ?? this.signUpStatus,
       errorMessage: errorMessage ?? this.errorMessage,
       isPasswordVisible: isPasswordVisible ?? this.isPasswordVisible,
       signinemailController:
@@ -87,7 +89,7 @@ class AuthState extends Equatable {
       signuplastnameController:
           signuplastnameController ?? this.signuplastnameController,
       signupemailController:
-          signupemailController ?? this.signuppasswordController,
+          signupemailController ?? this.signinemailController,
       signuppasswordController:
           signuppasswordController ?? this.signuppasswordController,
       signupConfirmpassController:
@@ -103,6 +105,7 @@ class AuthState extends Equatable {
         file,
         selectedHobbies,
         signInStatus,
+        signUpStatus,
         errorMessage,
         isPasswordVisible,
         signinemailController,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class AuthRepository {
@@ -13,8 +12,8 @@ class AuthRepository {
           multipartData: data);
       return UserResponse.fromJson(responce);
     } catch (e) {
-      log(e.toString());
-      throw Exception('Failed to sign up user: $e');
+      Logger.lOG(e.toString());
+      rethrow;
     }
   }
 
@@ -24,8 +23,8 @@ class AuthRepository {
           .request(RequestType.POST, ApiEndPoint.signInUser, data: data);
       return LoginResponse.fromJson(responce);
     } catch (e) {
-      log(e.toString());
-      throw Exception('Failed to Log in user: $e');
+      Logger.lOG(e.toString());
+      rethrow;
     }
   }
 }

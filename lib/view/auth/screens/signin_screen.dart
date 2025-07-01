@@ -13,16 +13,9 @@ class SignInScreen extends StatelessWidget {
     final text = Lang.of(context);
     return Scaffold(
       body: SingleChildScrollView(
-        child: BlocConsumer<AuthBloc, AuthState>(
+        child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return build_signin_screen(text, state, context);
-          },
-          listener: (BuildContext context, state) {
-            if (state.signInStatus == Status.success) {
-              AppToast.show(
-                  message: "Login successful",
-                  type: ToastificationType.success);
-            }
           },
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:dreamvila/core/utils/app_export.dart';
 
 class AddupdateState extends Equatable {
   final GlobalKey<FormState> formKey;
-
   final TextEditingController titleController;
   final TextEditingController descriptionController;
   final TextEditingController addressController;
@@ -15,11 +14,9 @@ class AddupdateState extends Equatable {
   final TextEditingController hallController;
   final TextEditingController kitchenController;
   final TextEditingController washroomController;
-
   final String selectedType;
   final List<String> images;
   final String? thumbnail;
-
   final bool isInitialized;
   final Status addProductStatus;
   final String errorMessage;

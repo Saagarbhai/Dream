@@ -10,3 +10,11 @@ class OnTabIndexChangeEvent extends HomeEvent {
 
   OnTabIndexChangeEvent(this.index);
 }
+
+class LoadHomePageEvent extends HomeEvent {}
+
+class OnDeleteButtonPressEvent extends HomeEvent {
+  final String id;
+
+  OnDeleteButtonPressEvent(this.id);
+}

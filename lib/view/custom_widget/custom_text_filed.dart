@@ -112,6 +112,7 @@ class CustomTextInputField extends TextFormField {
                 : null,
             prefixIconConstraints: boxConstraints,
             filled: filled ?? true,
+            counterText: '',
             suffixIcon: suffixText
                 ? suffixIcon
                 : suffixIcon != null

@@ -85,6 +85,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "lbl_land": MessageLookupByLibrary.simpleMessage("Land"),
     "lbl_last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
     "lbl_mobile": MessageLookupByLibrary.simpleMessage("Mobile"),
+    "lbl_no_data_found": MessageLookupByLibrary.simpleMessage(
+      "No Data Found...",
+    ),
     "lbl_office": MessageLookupByLibrary.simpleMessage("Office"),
     "lbl_on_submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "lbl_password": MessageLookupByLibrary.simpleMessage("Password"),

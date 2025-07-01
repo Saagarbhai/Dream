@@ -1,24 +1,25 @@
-class ProductDetailResponse {
+class ProductFoundResponse {
   final bool status;
   final String message;
-  final ProductData? data;
+  final ProductFoundData? data;
 
-  ProductDetailResponse({
+  ProductFoundResponse({
     required this.status,
     required this.message,
     this.data,
   });
 
-  factory ProductDetailResponse.fromJson(Map<String, dynamic> json) {
-    return ProductDetailResponse(
+  factory ProductFoundResponse.fromJson(Map<String, dynamic> json) {
+    return ProductFoundResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
-      data: json['data'] != null ? ProductData.fromJson(json['data']) : null,
+      data:
+          json['data'] != null ? ProductFoundData.fromJson(json['data']) : null,
     );
   }
 }
 
-class ProductData {
+class ProductFoundData {
   final String id;
   final String title;
   final String description;
@@ -36,7 +37,7 @@ class ProductData {
   final List<String> images;
   final String userId;
 
-  ProductData({
+  ProductFoundData({
     required this.id,
     required this.title,
     required this.description,
@@ -55,8 +56,8 @@ class ProductData {
     required this.userId,
   });
 
-  factory ProductData.fromJson(Map<String, dynamic> json) {
-    return ProductData(
+  factory ProductFoundData.fromJson(Map<String, dynamic> json) {
+    return ProductFoundData(
       id: json['_id'] ?? '',
       title: json['title'] ?? '',
       description: json['description'] ?? '',

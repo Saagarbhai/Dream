@@ -1,24 +1,24 @@
-class ProductResponse {
+class PropertyResponse {
   final bool status;
   final String message;
-  final ProductData? data;
+  final PropertyData? data;
 
-  ProductResponse({
+  PropertyResponse({
     required this.status,
     required this.message,
     this.data,
   });
 
-  factory ProductResponse.fromJson(Map<String, dynamic> json) {
-    return ProductResponse(
+  factory PropertyResponse.fromJson(Map<String, dynamic> json) {
+    return PropertyResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
-      data: json['data'] != null ? ProductData.fromJson(json['data']) : null,
+      data: json['data'] != null ? PropertyData.fromJson(json['data']) : null,
     );
   }
 }
 
-class ProductData {
+class PropertyData {
   final String title;
   final String description;
   final String address;
@@ -32,11 +32,11 @@ class ProductData {
   final int kitchen;
   final int washroom;
   final String thumbnail;
-  final String images;
+  final List<String> images;
   final String userId;
   final String id;
 
-  ProductData({
+  PropertyData({
     required this.title,
     required this.description,
     required this.address,
@@ -55,8 +55,8 @@ class ProductData {
     required this.id,
   });
 
-  factory ProductData.fromJson(Map<String, dynamic> json) {
-    return ProductData(
+  factory PropertyData.fromJson(Map<String, dynamic> json) {
+    return PropertyData(
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       address: json['address'] ?? '',
@@ -70,7 +70,7 @@ class ProductData {
       kitchen: json['kitchen'] ?? 0,
       washroom: json['washroom'] ?? 0,
       thumbnail: json['thumbnail'] ?? '',
-      images: json['images'] ?? '',
+      images: json['images'] ?? [],
       userId: json['userId'] ?? '',
       id: json['_id'] ?? '',
     );

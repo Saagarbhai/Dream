@@ -12,6 +12,9 @@ class AppImageView extends StatelessWidget {
   final BorderRadius? radius;
   final BoxBorder? border;
   final BlendMode? colorBlendMode;
+  final bool usePlaceholder;
+  final Duration fadeInDuration;
+  final Duration fadeOutDuration;
 
   const AppImageView({
     super.key,
@@ -26,6 +29,9 @@ class AppImageView extends StatelessWidget {
     this.margin,
     this.border,
     this.colorBlendMode,
+    this.usePlaceholder = true,
+    this.fadeInDuration = const Duration(milliseconds: 300),
+    this.fadeOutDuration = const Duration(milliseconds: 300),
   });
 
   @override
@@ -37,25 +43,28 @@ class AppImageView extends StatelessWidget {
 
   Widget _buildWidget() {
     return Padding(
-        padding: margin ?? EdgeInsets.zero,
-        child: InkWell(onTap: onTap, child: _buildCircleImage()));
+      padding: margin ?? EdgeInsets.zero,
+      child: InkWell(onTap: onTap, child: _buildCircleImage()),
+    );
   }
 
-  _buildCircleImage() {
+  Widget _buildCircleImage() {
     if (radius != null) {
       return ClipRRect(
-          borderRadius: radius ?? BorderRadius.zero,
-          child: _buildImageWithBorder());
+        borderRadius: radius ?? BorderRadius.zero,
+        child: _buildImageWithBorder(),
+      );
     } else {
       return _buildImageWithBorder();
     }
   }
 
-  _buildImageWithBorder() {
+  Widget _buildImageWithBorder() {
     if (border != null) {
       return Container(
-          decoration: BoxDecoration(border: border, borderRadius: radius),
-          child: _buildImageView());
+        decoration: BoxDecoration(border: border, borderRadius: radius),
+        child: _buildImageView(),
+      );
     } else {
       return _buildImageView();
     }
@@ -68,52 +77,71 @@ class AppImageView extends StatelessWidget {
           return SizedBox(
             height: height,
             width: width,
-            child: SvgPicture.asset(imagePath!,
-                height: height,
-                width: width,
-                fit: fit ?? BoxFit.contain,
-                color: color),
+            child: SvgPicture.asset(
+              imagePath!,
+              height: height,
+              width: width,
+              fit: fit ?? BoxFit.contain,
+              colorFilter: color != null
+                  ? ColorFilter.mode(color!, BlendMode.srcIn)
+                  : null,
+            ),
           );
         case ImageType.file:
-          return Image.file(File(imagePath!),
+          final file = File(imagePath!);
+          if (file.existsSync()) {
+            return Image.file(
+              file,
               height: height,
               width: width,
               fit: fit ?? BoxFit.cover,
-              color: color);
+              color: color,
+            );
+          } else {
+            return _buildErrorWidget();
+          }
         case ImageType.network:
           return CachedNetworkImage(
             height: height,
             width: width,
             fit: fit,
             imageUrl: imagePath!,
-            filterQuality: FilterQuality.high,
+            filterQuality: FilterQuality.medium,
             color: color,
             repeat: ImageRepeat.noRepeat,
-            placeholderFadeInDuration: const Duration(milliseconds: 300),
-            fadeInDuration: const Duration(milliseconds: 300),
-            fadeOutDuration: const Duration(milliseconds: 300),
-            colorBlendMode: BlendMode.overlay,
-            fadeOutCurve: Curves.bounceOut,
-            placeholder: (context, url) => Shimmer.fromColors(
-              baseColor: Colors.grey.shade200,
-              highlightColor: Colors.grey.shade50,
-              child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(color: Colors.grey.shade200)),
+            placeholderFadeInDuration: fadeInDuration,
+            fadeInDuration: fadeInDuration,
+            fadeOutDuration: fadeOutDuration,
+            colorBlendMode: colorBlendMode ?? BlendMode.srcOver,
+            fadeOutCurve: Curves.easeOut,
+            placeholder: usePlaceholder
+                ? (context, url) => Shimmer.fromColors(
+                      baseColor: Colors.grey.shade200,
+                      highlightColor: Colors.grey.shade50,
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(color: Colors.grey.shade200),
+                      ),
+                    )
+                : null,
+            cacheManager: CacheManager(
+              Config(
+                'APP_NAME',
+                stalePeriod: const Duration(days: 7),
+                maxNrOfCacheObjects: 2000,
+                repo: JsonCacheInfoRepository(databaseName: 'APP_NAME'),
+                fileService: HttpFileService(),
+              ),
             ),
-            cacheManager: CacheManager(Config('CHAT',
-                stalePeriod: const Duration(days: 1),
-                maxNrOfCacheObjects: 1000)),
-            errorWidget: (context, url, error) => AppImageView(
-              imagePath: 'assets/images/error/pngNotFound.svg',
-              height: height,
-              width: width,
-              fit: fit ?? BoxFit.cover,
-            ),
+            errorWidget: (context, url, error) => _buildErrorWidget(),
           );
         case ImageType.lottie:
-          return Lottie.asset(imagePath!,
-              height: height, width: width, fit: fit ?? BoxFit.cover);
+          return Lottie.asset(
+            imagePath!,
+            height: height,
+            width: width,
+            fit: fit ?? BoxFit.cover,
+          );
         case ImageType.png:
         default:
           return Image.asset(
@@ -122,13 +150,24 @@ class AppImageView extends StatelessWidget {
             width: width,
             fit: fit ?? BoxFit.cover,
             color: color,
-            filterQuality: FilterQuality.high,
+            filterQuality: FilterQuality.medium,
             gaplessPlayback: true,
             alignment: Alignment.center,
+            errorBuilder: (context, error, stackTrace) => _buildErrorWidget(),
           );
       }
     }
+
     return const SizedBox.shrink();
+  }
+
+  Widget _buildErrorWidget() {
+    return Container(
+      height: height,
+      width: width,
+      color: Colors.grey.shade200,
+      child: const Icon(Icons.broken_image, size: 30, color: Colors.grey),
+    );
   }
 }
 

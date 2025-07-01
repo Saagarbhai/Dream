@@ -14,14 +14,7 @@ class SignUpScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        body: BlocConsumer<AuthBloc, AuthState>(
-          listener: (context, state) {
-            if (state.signUpStatus == Status.success) {
-              AppToast.show(
-                  message: "Sign Up successful",
-                  type: ToastificationType.success);
-            }
-          },
+        body: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return SingleChildScrollView(
               child: SafeArea(
@@ -50,6 +43,7 @@ class SignUpScreen extends StatelessWidget {
                       LabeledTextField(
                           label: text.lbl_mobile,
                           hint: text.hint_mobile,
+                          maxLenth: 10,
                           controller: state.signupMobileController,
                           inputType: InputType.phoneNumber),
                       _buildGender(context, state),
@@ -61,6 +55,7 @@ class SignUpScreen extends StatelessWidget {
                         obscureText: state.isPasswordVisible,
                         controller: state.signuppasswordController,
                         inputType: InputType.email,
+                        maxLenth: 15,
                         suffixIcon: PasswordVisibilityToggleButton(
                           isPasswordVisible: state.isPasswordVisible,
                         ),
@@ -70,6 +65,7 @@ class SignUpScreen extends StatelessWidget {
                         hint: text.hint_password,
                         controller: state.signupConfirmpassController,
                         inputType: InputType.email,
+                        maxLenth: 15,
                         obscureText: state.isPasswordVisible,
                         suffixIcon: PasswordVisibilityToggleButton(
                           isPasswordVisible: state.isPasswordVisible,
@@ -81,6 +77,7 @@ class SignUpScreen extends StatelessWidget {
                         buttonText: text.text_sign_up,
                         footerTextButtonText: text.text_sign_in,
                         footerText: text.text_Alreadyhaveaccount,
+                        isLoading: state.signUpStatus == Status.loading,
                         onActionTap: () {
                           try {
                             NavigatorService.pushNamedAndRemoveUntil(
@@ -129,18 +126,24 @@ class SignUpScreen extends StatelessWidget {
         Row(
           children: [
             CommonRadioButton(
-                label: text.text_male,
-                selectedGender: state.gender,
-                onChanged: (value) {
-                  bloc.add(OnGenderChangeEvent(value!));
-                }),
+              label: text.text_male,
+              selectedGender: state.gender,
+              onChanged: (value) {
+                bloc.add(
+                  OnGenderChangeEvent(value!),
+                );
+              },
+            ),
             SizedBox(width: 140.w),
             CommonRadioButton(
-                label: text.text_felame,
-                selectedGender: state.gender,
-                onChanged: (value) {
-                  bloc.add(OnGenderChangeEvent(value!));
-                }),
+              label: text.text_felame,
+              selectedGender: state.gender,
+              onChanged: (value) {
+                bloc.add(
+                  OnGenderChangeEvent(value!),
+                );
+              },
+            ),
           ],
         ),
       ],

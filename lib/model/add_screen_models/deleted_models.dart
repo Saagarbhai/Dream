@@ -1,14 +1,14 @@
-class ProductDeleteResponse {
+class PropertyDeleteResponse {
   final bool status;
   final String message;
 
-  ProductDeleteResponse({
+  PropertyDeleteResponse({
     required this.status,
     required this.message,
   });
 
-  factory ProductDeleteResponse.fromJson(Map<String, dynamic> json) {
-    return ProductDeleteResponse(
+  factory PropertyDeleteResponse.fromJson(Map<String, dynamic> json) {
+    return PropertyDeleteResponse(
       status: json['status'] ?? false,
       message: json['message'] ?? '',
     );

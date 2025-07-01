@@ -9,6 +9,7 @@ class LabeledTextField extends StatelessWidget {
   final TextEditingController controller;
   final InputType inputType;
   final int? maxLines;
+  final int? maxLenth;
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final Widget? textButton;
@@ -21,6 +22,7 @@ class LabeledTextField extends StatelessWidget {
       required this.controller,
       required this.inputType,
       this.maxLines,
+      this.maxLenth,
       this.validator,
       this.suffixIcon,
       this.textButton});
@@ -43,6 +45,7 @@ class LabeledTextField extends StatelessWidget {
               type: inputType,
               hintLabel: hint ?? label,
               controller: controller,
+              maxLength: maxLenth ?? 25,
               hintStyle: textTheme.labelLarge
                   ?.copyWith(color: colorScheme.customColors.greyColor),
               validator: validator ??

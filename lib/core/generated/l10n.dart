@@ -519,6 +519,16 @@ class Lang {
   String get lbl_on_submit {
     return Intl.message('Submit', name: 'lbl_on_submit', desc: '', args: []);
   }
+
+  /// `No Data Found...`
+  String get lbl_no_data_found {
+    return Intl.message(
+      'No Data Found...',
+      name: 'lbl_no_data_found',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

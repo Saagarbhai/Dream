@@ -2,31 +2,25 @@ import '../../core/utils/app_export.dart';
 
 class DetailsScreen extends StatelessWidget {
   static Widget builder(BuildContext context) {
-    return DetailsScreen();
+    return DetailsScreen(id: '');
   }
 
-  DetailsScreen({super.key});
-
-  final List<String> images = [
-    "assets/images/ic_cloud.png",
-    "assets/images/ic_cloud.png",
-    "assets/images/ic_cloud.png",
-    "assets/images/ic_cloud.png"
-  ];
+  final String id;
+  const DetailsScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
+    context.read<DetailsBloc>().add(LoadProductDetailEvent(id));
     final text = Lang.of(context);
     return Scaffold(
-      body: BlocConsumer<DetailsBloc, DetailsState>(
-        listener: (context, state) {},
+      body: BlocBuilder<DetailsBloc, DetailsState>(
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 40.h),
-                _build_Carousel_Slider(context),
+                _build_Carousel_Slider(context, state),
                 SizedBox(height: 10.h),
                 _build_page_indicator(state, context),
                 SizedBox(height: 10.h),
@@ -34,7 +28,7 @@ class DetailsScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 30.w),
                   child: _buildTextLarge(text.text_description, context),
                 ),
-                _build_Description(context, text),
+                _build_Description(context, text, state),
               ],
             ),
           );
@@ -43,7 +37,8 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _build_Description(BuildContext context, Lang text) {
+  Widget _build_Description(
+      BuildContext context, Lang text, DetailsState state) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Card(
@@ -55,7 +50,7 @@ class DetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildTextMedium(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+                  "${state.data!.data!.description}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
                   context),
               SizedBox(height: 20.h),
               Row(
@@ -109,7 +104,7 @@ class DetailsScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
-          images.length,
+          state.data!.data!.images.length,
           (index) {
             return Container(
               height: 9.h,
@@ -127,7 +122,9 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  CarouselSlider _build_Carousel_Slider(BuildContext context) {
+  CarouselSlider _build_Carousel_Slider(
+      BuildContext context, DetailsState state) {
+    final List<String> images = state.data!.data!.images;
     return CarouselSlider(
       items: images
           .map(
