@@ -69,5 +69,7 @@
   "lbl_Property_Washroom" : "Property's Washroom",
   "lbl_Property_image": "Property's Images",
   "lbl_on_submit": "Submit",
-  "lbl_no_data_found" : "No Data Found..."
+  "lbl_no_data_found" : "No Data Found...",
+  "lbl_limited_time": "Limited time",
+  "lbl_is_coming_back": "is coming back!"
 }

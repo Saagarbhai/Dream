@@ -82,8 +82,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "lbl_first_name": MessageLookupByLibrary.simpleMessage("First Name"),
     "lbl_gender": MessageLookupByLibrary.simpleMessage("Gender"),
     "lbl_house": MessageLookupByLibrary.simpleMessage("House"),
+    "lbl_is_coming_back": MessageLookupByLibrary.simpleMessage(
+      "is coming back!",
+    ),
     "lbl_land": MessageLookupByLibrary.simpleMessage("Land"),
     "lbl_last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
+    "lbl_limited_time": MessageLookupByLibrary.simpleMessage("Limited time"),
     "lbl_mobile": MessageLookupByLibrary.simpleMessage("Mobile"),
     "lbl_no_data_found": MessageLookupByLibrary.simpleMessage(
       "No Data Found...",

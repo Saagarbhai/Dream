@@ -22,6 +22,8 @@ class DetailsScreen extends StatelessWidget {
                 SizedBox(height: 40.h),
                 _build_Carousel_Slider(context, state),
                 SizedBox(height: 10.h),
+                _build_Text_Span(context, state),
+                SizedBox(height: 10.h),
                 _build_page_indicator(state, context),
                 SizedBox(height: 10.h),
                 Padding(
@@ -33,6 +35,42 @@ class DetailsScreen extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _build_Text_Span(BuildContext context, DetailsState state) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: RichText(
+        text: TextSpan(
+            style: TextStyle(overflow: TextOverflow.ellipsis),
+            children: [
+              TextSpan(
+                text: Lang.of(context).lbl_limited_time,
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    fontSize: 25.sp,
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                    fontWeight: FontWeight.bold),
+              ),
+              WidgetSpan(child: SizedBox(width: 8.w)),
+              TextSpan(
+                text: state.data?.data?.title,
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 25.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              WidgetSpan(child: SizedBox(width: 8.w)),
+              TextSpan(
+                text: Lang.of(context).lbl_is_coming_back,
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    fontSize: 25.sp,
+                    fontFamily: GoogleFonts.poppins().fontFamily,
+                    fontWeight: FontWeight.bold),
+              ),
+            ]),
       ),
     );
   }
@@ -49,9 +87,7 @@ class DetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildTextMedium(
-                  "${state.data!.data!.description}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
-                  context),
+              _buildTextMedium(state.data!.data!.description, context),
               SizedBox(height: 20.h),
               Row(
                 children: [
@@ -76,17 +112,26 @@ class DetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     spacing: 15.h,
                     children: [
-                      _buildTextWithPrimatyColor(text.text_location, context),
-                      _buildTextWithPrimatyColor(text.text_price, context),
                       _buildTextWithPrimatyColor(
-                          text.text_description, context),
-                      _buildTextWithPrimatyColor(text.text_rating, context),
-                      _buildTextWithPrimatyColor(text.text_type, context),
-                      _buildTextWithPrimatyColor(text.text_plot, context),
-                      _buildTextWithPrimatyColor(text.text_bedroom, context),
-                      _buildTextWithPrimatyColor(text.text_hall, context),
-                      _buildTextWithPrimatyColor(text.text_kitchen, context),
-                      _buildTextWithPrimatyColor(text.text_washroom, context)
+                          state.data!.data!.address, context),
+                      _buildTextWithPrimatyColor(
+                          '\$ ${state.data!.data!.price.toString()}', context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.description, context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.rating.toString(), context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.type, context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.plot.toString(), context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.bedroom.toString(), context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.hall.toString(), context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.kitchen.toString(), context),
+                      _buildTextWithPrimatyColor(
+                          state.data!.data!.washroom.toString(), context)
                     ],
                   ),
                 ],
@@ -98,7 +143,7 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  SizedBox _build_page_indicator(DetailsState state, BuildContext context) {
+  Widget _build_page_indicator(DetailsState state, BuildContext context) {
     return SizedBox(
       height: 10.h,
       child: Row(
@@ -122,8 +167,7 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  CarouselSlider _build_Carousel_Slider(
-      BuildContext context, DetailsState state) {
+  Widget _build_Carousel_Slider(BuildContext context, DetailsState state) {
     final List<String> images = state.data!.data!.images;
     return CarouselSlider(
       items: images
