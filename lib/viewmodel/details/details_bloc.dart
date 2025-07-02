@@ -19,6 +19,10 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     emit(state.copyWith(detailPageStatus: Status.loading));
     final ProductFoundResponse response =
         await propertyRepositotry.getOnePropertyDetail(event.id);
-    emit(state.copyWith(detailPageStatus: Status.success, data: response));
+    if (response.status == true) {
+      emit(state.copyWith(detailPageStatus: Status.success, data: response));
+    } else {
+      emit(state.copyWith(detailPageStatus: Status.failure, data: response));
+    }
   }
 }

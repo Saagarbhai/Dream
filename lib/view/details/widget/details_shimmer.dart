@@ -15,9 +15,9 @@ class DetailsScreenShimmer extends StatelessWidget {
             SizedBox(height: 40.h),
             _buildCarouselShimmer(),
             SizedBox(height: 10.h),
-            _buildTextSpanShimmer(),
-            SizedBox(height: 10.h),
             _buildPageIndicatorShimmer(),
+            SizedBox(height: 10.h),
+            _buildTextSpanShimmer(),
             SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.only(left: 30.w),
@@ -50,7 +50,8 @@ class DetailsScreenShimmer extends StatelessWidget {
       child: Card(
         child: Container(
           width: 0.95.sw,
-          margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h, bottom: 15.h),
+          margin:
+              EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h, bottom: 15.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,7 +68,10 @@ class DetailsScreenShimmer extends StatelessWidget {
                         11,
                         (index) => Column(
                           children: [
-                            Container(height: 18.h, width: 0.25.sw, color: Colors.white),
+                            Container(
+                                height: 18.h,
+                                width: 0.25.sw,
+                                color: Colors.white),
                             SizedBox(height: 15.h),
                           ],
                         ),
@@ -82,7 +86,10 @@ class DetailsScreenShimmer extends StatelessWidget {
                         11,
                         (index) => Column(
                           children: [
-                            Container(height: 18.h, width: 0.4.sw, color: Colors.white),
+                            Container(
+                                height: 18.h,
+                                width: 0.4.sw,
+                                color: Colors.white),
                             SizedBox(height: 15.h),
                           ],
                         ),

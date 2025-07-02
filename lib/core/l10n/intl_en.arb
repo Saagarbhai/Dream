@@ -72,5 +72,16 @@
   "lbl_on_submit": "Submit",
   "lbl_no_data_found" : "No Data Found...",
   "lbl_limited_time": "Limited time",
-  "lbl_is_coming_back": "is coming back!"
+  "lbl_is_coming_back": "is coming back!",
+
+  "error_lbl_invalid_property_id": "Invalid Property ID",
+  "error_lbl_select_valid_property": "Please select a valid property",
+  "error_button_lbl_Go_Back":"Go Back",
+  "error_lbl_failed_to_load_details":"Failed to load property details",
+  "error_lbl_check_your_conection":"Please check your internet connection",
+  "error_button_lbl_retry":"Retry",
+  "error_no_data_found":"Property Not Found",
+  "error_no_longer_data_available":"This property may have been removed or is no longer available",
+  "error_button_lbl_Back_to_properties":"Back to Properties",
+  "error_Something_went_wrong":"Something went wrong"  
 }

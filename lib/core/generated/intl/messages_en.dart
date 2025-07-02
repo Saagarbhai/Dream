@@ -23,6 +23,32 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "apptitle": MessageLookupByLibrary.simpleMessage("Dream Vila"),
+    "error_Something_went_wrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
+    "error_button_lbl_Back_to_properties": MessageLookupByLibrary.simpleMessage(
+      "Back to Properties",
+    ),
+    "error_button_lbl_Go_Back": MessageLookupByLibrary.simpleMessage("Go Back"),
+    "error_button_lbl_retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "error_lbl_check_your_conection": MessageLookupByLibrary.simpleMessage(
+      "Please check your internet connection",
+    ),
+    "error_lbl_failed_to_load_details": MessageLookupByLibrary.simpleMessage(
+      "Failed to load property details",
+    ),
+    "error_lbl_invalid_property_id": MessageLookupByLibrary.simpleMessage(
+      "Invalid Property ID",
+    ),
+    "error_lbl_select_valid_property": MessageLookupByLibrary.simpleMessage(
+      "Please select a valid property",
+    ),
+    "error_no_data_found": MessageLookupByLibrary.simpleMessage(
+      "Property Not Found",
+    ),
+    "error_no_longer_data_available": MessageLookupByLibrary.simpleMessage(
+      "This property may have been removed or is no longer available",
+    ),
     "hint_address": MessageLookupByLibrary.simpleMessage("Address"),
     "hint_bedroom": MessageLookupByLibrary.simpleMessage("Bedroom"),
     "hint_discount": MessageLookupByLibrary.simpleMessage(

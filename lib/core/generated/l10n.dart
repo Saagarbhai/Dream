@@ -559,6 +559,106 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Invalid Property ID`
+  String get error_lbl_invalid_property_id {
+    return Intl.message(
+      'Invalid Property ID',
+      name: 'error_lbl_invalid_property_id',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a valid property`
+  String get error_lbl_select_valid_property {
+    return Intl.message(
+      'Please select a valid property',
+      name: 'error_lbl_select_valid_property',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get error_button_lbl_Go_Back {
+    return Intl.message(
+      'Go Back',
+      name: 'error_button_lbl_Go_Back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load property details`
+  String get error_lbl_failed_to_load_details {
+    return Intl.message(
+      'Failed to load property details',
+      name: 'error_lbl_failed_to_load_details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your internet connection`
+  String get error_lbl_check_your_conection {
+    return Intl.message(
+      'Please check your internet connection',
+      name: 'error_lbl_check_your_conection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get error_button_lbl_retry {
+    return Intl.message(
+      'Retry',
+      name: 'error_button_lbl_retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Property Not Found`
+  String get error_no_data_found {
+    return Intl.message(
+      'Property Not Found',
+      name: 'error_no_data_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This property may have been removed or is no longer available`
+  String get error_no_longer_data_available {
+    return Intl.message(
+      'This property may have been removed or is no longer available',
+      name: 'error_no_longer_data_available',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Properties`
+  String get error_button_lbl_Back_to_properties {
+    return Intl.message(
+      'Back to Properties',
+      name: 'error_button_lbl_Back_to_properties',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get error_Something_went_wrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'error_Something_went_wrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {
