@@ -5,6 +5,7 @@ class CustomImagePickerField extends StatelessWidget {
   final List<String> images;
   final VoidCallback onAddTap;
   final void Function(int) onRemoveTap;
+  final Color borderColor;
 
   const CustomImagePickerField({
     super.key,
@@ -12,6 +13,7 @@ class CustomImagePickerField extends StatelessWidget {
     required this.images,
     required this.onAddTap,
     required this.onRemoveTap,
+    required this.borderColor,
   });
 
   @override
@@ -24,7 +26,7 @@ class CustomImagePickerField extends StatelessWidget {
         GestureDetector(
           onTap: onAddTap,
           child: DottedBorder(
-            color: Colors.grey,
+            color: borderColor,
             borderType: BorderType.RRect,
             radius: const Radius.circular(12),
             dashPattern: const [8, 4],

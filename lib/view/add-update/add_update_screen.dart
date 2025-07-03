@@ -1,4 +1,5 @@
 import 'package:dreamvila/core/utils/app_export.dart';
+import 'package:dreamvila/view/add-update/widget/custom_rating_star.dart';
 
 class AddUpdateScreen extends StatelessWidget {
   final bool isUpdate;
@@ -12,25 +13,30 @@ class AddUpdateScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final bloc = context.read<AddupdateBloc>();
-      if (isUpdate && !bloc.state.isInitialized) {
-        bloc.add(UpdatebuttonpressedEvent(property!));
-      } else if (!isUpdate && bloc.state.isInitialized) {
-        bloc.add(DisposeEvent());
-      }
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        final bloc = context.read<AddupdateBloc>();
+        if (isUpdate && !bloc.state.isInitialized) {
+          bloc.add(UpdatebuttonpressedEvent(property!));
+        } else if (!isUpdate && bloc.state.isInitialized) {
+          bloc.add(DisposeEvent());
+        }
+      },
+    );
     final text = Lang.of(context);
     return WillPopScope(
       onWillPop: () async {
         context.read<AddupdateBloc>().add(DisposeEvent());
         return true;
       },
-      child: Scaffold(body: BlocBuilder<AddupdateBloc, AddupdateState>(
-        builder: (context, state) {
-          return _buil_text_fields(state, text, context);
-        },
-      )),
+      child: Scaffold(
+        appBar: _buildAppBar(text, context),
+        body: BlocBuilder<AddupdateBloc, AddupdateState>(
+          builder: (context, state) {
+            return _buil_text_fields(state, text, context);
+          },
+        ),
+      ),
     );
   }
 
@@ -38,13 +44,13 @@ class AddUpdateScreen extends StatelessWidget {
       AddupdateState state, Lang text, BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Form(
           key: state.formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 15.h,
             children: [
-              SizedBox(height: 30.h),
               LabeledTextField(
                   label: text.lbl_Property_name,
                   hint: text.hint_name,
@@ -77,12 +83,11 @@ class AddUpdateScreen extends StatelessWidget {
                   maxLenth: 2,
                   controller: state.discountPercentageController,
                   inputType: InputType.phoneNumber),
-              LabeledTextField(
-                  label: text.lbl_property_Rating,
-                  hint: text.hint_rating,
-                  maxLenth: 3,
-                  controller: state.ratingController,
-                  inputType: InputType.phoneNumber),
+              LabeledStarRatingField(
+                label: text.lbl_property_Rating,
+                maxRating: 10,
+                itemSize: 25.sp,
+              ),
               LabeledTextField(
                   label: text.lbl_Property_Plot,
                   hint: text.hint_plots,
@@ -115,6 +120,7 @@ class AddUpdateScreen extends StatelessWidget {
                   controller: state.washroomController,
                   inputType: InputType.phoneNumber),
               CustomImagePickerField(
+                borderColor: Colors.grey,
                 label: Lang.of(context).lbl_Property_image,
                 images: state.images,
                 onAddTap: () => context.read<AddupdateBloc>().add(
@@ -142,7 +148,8 @@ class AddUpdateScreen extends StatelessWidget {
                         );
                   }
                 },
-              )
+              ),
+              SizedBox()
             ],
           ),
         ),
@@ -194,5 +201,21 @@ class AddUpdateScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  AppBar _buildAppBar(Lang text, BuildContext context) {
+    return AppBar(
+        title: Text(
+          isUpdate
+              ? text.title_update_Screen.toUpperCase()
+              : text.title_add_Screen.toUpperCase(),
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary);
   }
 }

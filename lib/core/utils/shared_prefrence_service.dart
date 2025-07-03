@@ -8,6 +8,11 @@ class SharedPreferencesService {
     await prefs.setBool("isLogin", isLogin);
   }
 
+  Future<void> storeUserIsLogout(bool isLogin) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("isLogin", isLogin);
+  }
+
   Future<bool> getUserIsLogin() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool("isLogin") ?? false;

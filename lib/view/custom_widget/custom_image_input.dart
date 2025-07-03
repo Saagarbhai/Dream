@@ -2,9 +2,9 @@ import 'package:dreamvila/core/utils/app_export.dart';
 
 class CommonImageInput extends StatelessWidget {
   final String label;
-  final List<String> imagePaths; // List of file/image paths
-  final VoidCallback onTap; // Called when user taps to add image(s)
-  final void Function(int)? onRemove; // Called when user taps "X" to remove
+  final List<String> imagePaths;
+  final VoidCallback onTap;
+  final void Function(int)? onRemove;
   final double height;
   final double width;
   final bool allowMultiple;

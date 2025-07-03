@@ -43,6 +43,7 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   flutter_localizations:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
   flutter_svg: ^2.0.7
@@ -120,5 +121,4 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/app_icon/app_icon.png"
-  min_sdk_android: 21 
-
+  min_sdk_android: 21

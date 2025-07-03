@@ -18,3 +18,5 @@ class OnDeleteButtonPressEvent extends HomeEvent {
 
   OnDeleteButtonPressEvent(this.id);
 }
+
+class OnLogOutButtonPressEvent extends HomeEvent {}

@@ -17,33 +17,52 @@ class DetailsScreen extends StatelessWidget {
     final text = Lang.of(context);
 
     return Scaffold(
-      body: BlocBuilder<DetailsBloc, DetailsState>(
-        builder: (context, state) {
-          if (id.isEmpty) {
-            return _buildInvalidIdWidget(context);
-          }
+      appBar: _buildAppBar(text, context),
+      body: _build_Bloc_builder(text),
+    );
+  }
 
-          if (state.detailPageStatus == Status.loading) {
-            return const DetailsScreenShimmer();
-          }
+  AppBar _buildAppBar(Lang text, BuildContext context) {
+    return AppBar(
+        title: Text(
+          text.title_details_Screen.toUpperCase(),
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary);
+  }
 
-          if (state.detailPageStatus == Status.failure) {
-            return _buildErrorWidget(context);
-          }
+  Widget _build_Bloc_builder(Lang text) {
+    return BlocBuilder<DetailsBloc, DetailsState>(
+      builder: (context, state) {
+        if (id.isEmpty) {
+          return _buildInvalidIdWidget(context);
+        }
 
-          if (state.detailPageStatus == Status.success &&
-              state.data?.data != null) {
-            return _buildSuccessContent(context, state, text);
-          }
+        if (state.detailPageStatus == Status.loading) {
+          return const DetailsScreenShimmer();
+        }
 
-          if (state.detailPageStatus == Status.success &&
-              state.data?.data == null) {
-            return _buildNoDataWidget(context);
-          }
+        if (state.detailPageStatus == Status.failure) {
+          return _buildErrorWidget(context);
+        }
 
-          return _buildEmptyStateWidget(context);
-        },
-      ),
+        if (state.detailPageStatus == Status.success &&
+            state.data?.data != null) {
+          return _buildSuccessContent(context, state, text);
+        }
+
+        if (state.detailPageStatus == Status.success &&
+            state.data?.data == null) {
+          return _buildNoDataWidget(context);
+        }
+
+        return _buildEmptyStateWidget(context);
+      },
     );
   }
 
@@ -55,7 +74,6 @@ class DetailsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 40.h),
           _buildCarouselSlider(context, productData),
           SizedBox(height: 10.h),
           _buildPageIndicator(state, context, productData.images),
@@ -66,7 +84,7 @@ class DetailsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 30.w),
             child: _buildTextLarge(text.text_description, context),
           ),
-          _buildDescription(context, text, productData),
+          _buildPropertyDetail(context, productData)
         ],
       ),
     );
@@ -237,83 +255,88 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDescription(
-      BuildContext context, Lang text, ProductFoundData productData) {
+  Widget _buildPropertyDetail(BuildContext context, ProductFoundData? product) {
+    if (product == null) {
+      return Center(
+        child: Text(Lang.of(context).lbl_no_data_found),
+      );
+    }
+    final Map<String, String> details = {
+      "Location": product.address.toString(),
+      "Price": "\$ ${product.price}",
+      "Discount": "${product.discountPercentage} %",
+      "Rating": "${product.rating} / 5",
+      "Type": product.type.toString(),
+      "Plots": "Plots ${product.plot}",
+      "Bedroom": product.bedroom.toString(),
+      "Hall": product.hall.toString(),
+      "Kitchen": product.kitchen.toString(),
+      "Washroom": product.washroom.toString(),
+    };
+
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Card(
-        child: Container(
-          width: 0.95.sw,
-          margin:
-              EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h, bottom: 15.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTextMedium(productData.description, context),
-              SizedBox(height: 20.h),
-              Row(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Card(
+            color: Theme.of(context).customColors.secondaryColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r)),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 0.3.sw,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildPropertyField(text.text_location, context),
-                        _buildPropertyField(text.text_price, context),
-                        _buildPropertyField(text.text_description2, context),
-                        _buildPropertyField(text.text_rating, context),
-                        _buildPropertyField(text.text_type, context),
-                        _buildPropertyField(text.text_plot, context),
-                        _buildPropertyField(text.text_bedroom, context),
-                        _buildPropertyField(text.text_hall, context),
-                        _buildPropertyField(text.text_kitchen, context),
-                        _buildPropertyField(text.text_washroom, context),
-                      ],
-                    ),
+                  Text(
+                    product.description.toString(),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  SizedBox(width: 20.w),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildPropertyValue(productData.address, context),
-                        _buildPropertyValue('\$ ${productData.price}', context),
-                        _buildPropertyValue(productData.description, context),
-                        _buildPropertyValue('⭐ ${productData.rating}', context),
-                        _buildPropertyValue(productData.type, context),
-                        _buildPropertyValue('${productData.plot}', context),
-                        _buildPropertyValue('${productData.bedroom}', context),
-                        _buildPropertyValue('${productData.hall}', context),
-                        _buildPropertyValue('${productData.kitchen}', context),
-                        _buildPropertyValue('${productData.washroom}', context),
-                      ],
-                    ),
+                  SizedBox(height: 20.h),
+                  Table(
+                    columnWidths: const {
+                      0: IntrinsicColumnWidth(),
+                      1: FlexColumnWidth(),
+                    },
+                    defaultVerticalAlignment: TableCellVerticalAlignment.top,
+                    children: details.entries.map((entry) {
+                      return TableRow(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              "${entry.key} :",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(fontSize: 18.sp),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Text(
+                              entry.value,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 18.sp),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 5,
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
-    );
-  }
-
-  Widget _buildPropertyField(String label, BuildContext context) {
-    return Column(
-      children: [
-        _buildTextLarge(label, context),
-        SizedBox(height: 15.h),
-      ],
-    );
-  }
-
-  Widget _buildPropertyValue(String value, BuildContext context) {
-    return Column(
-      children: [
-        _buildTextWithPrimaryColor(value, context),
-        SizedBox(height: 15.h),
-      ],
     );
   }
 
@@ -422,23 +445,6 @@ class DetailsScreen extends StatelessWidget {
           .textTheme
           .titleLarge!
           .copyWith(fontWeight: FontWeight.bold, fontSize: 18.sp),
-    );
-  }
-
-  Widget _buildTextMedium(String label, BuildContext context) {
-    return Text(
-      label,
-      style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 16.sp),
-    );
-  }
-
-  Widget _buildTextWithPrimaryColor(String label, BuildContext context) {
-    return Text(
-      label,
-      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          color: Theme.of(context).colorScheme.primary, fontSize: 18.sp),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
     );
   }
 }

@@ -88,3 +88,4 @@ export 'package:dreamvila/model/home_screens_models/add_propertry_model.dart';
 export 'package:dreamvila/model/details_screen_models/details_screen_models.dart';
 export 'package:dreamvila/view/home/widget/property_card_shimmer.dart';
 export 'package:dreamvila/view/details/widget/details_shimmer.dart';
+export 'package:flutter_rating_bar/flutter_rating_bar.dart';

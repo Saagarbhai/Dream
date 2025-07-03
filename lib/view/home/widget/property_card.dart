@@ -124,7 +124,6 @@ class PropertyCard extends StatelessWidget {
           ),
           child: _text(
             "$discount % Discount",
-            fontSize: 14.sp,
             color: Colors.deepOrange,
           ),
         ),
@@ -135,7 +134,7 @@ class PropertyCard extends StatelessWidget {
           children: [
             Icon(Icons.star, size: 15.sp, color: Colors.orange),
             SizedBox(width: 2.w),
-            _text(rating.toString(), fontSize: 14.sp),
+            _text(rating.toString()),
           ],
         )
       ],

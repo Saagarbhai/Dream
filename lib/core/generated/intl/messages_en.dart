@@ -160,5 +160,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Upload User Profile",
     ),
     "text_washroom": MessageLookupByLibrary.simpleMessage("Washroom : "),
+    "title_add_Screen": MessageLookupByLibrary.simpleMessage(" Add Property"),
+    "title_details_Screen": MessageLookupByLibrary.simpleMessage(
+      "Property Details",
+    ),
+    "title_update_Screen": MessageLookupByLibrary.simpleMessage(
+      "Edit Property",
+    ),
   };
 }

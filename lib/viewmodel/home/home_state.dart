@@ -8,13 +8,14 @@ class HomeState extends Equatable {
   final String errorMessage;
   final UserDetailResponse? user;
 
-  const HomeState(
-      {this.index = 0,
-      this.homeStatus = Status.init,
-      this.propertyStatus = Status.init,
-      this.data,
-      this.errorMessage = '',
-      this.user});
+  const HomeState({
+    this.index = 0,
+    this.homeStatus = Status.init,
+    this.propertyStatus = Status.init,
+    this.data,
+    this.errorMessage = '',
+    this.user,
+  });
 
   HomeState copyWith({
     int? index,

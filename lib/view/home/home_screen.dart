@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:dreamvila/core/utils/app_export.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,23 +14,28 @@ class HomeScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        body: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return SafeArea(
-              minimum: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-              child: Column(
-                children: [
-                  _buildHeader(text, context, state),
-                  SizedBox(height: 10.h),
-                  _buildTabView(context),
-                  SizedBox(height: 10.h),
-                  _build_property_list(context, state),
-                ],
-              ),
-            );
-          },
-        ),
+        appBar: _buildAppBar(text, context),
+        body: _build_body(text),
       ),
+    );
+  }
+
+  Widget _build_body(Lang text) {
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return SafeArea(
+          minimum: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          child: Column(
+            children: [
+              _buildHeader(text, context, state),
+              SizedBox(height: 10.h),
+              _buildTabView(context),
+              SizedBox(height: 10.h),
+              _build_property_list(context, state),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -39,7 +43,6 @@ class HomeScreen extends StatelessWidget {
     return Column(
       spacing: 10.sp,
       children: [
-        SizedBox(height: 20.h),
         Row(
           children: [
             Container(
@@ -58,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                 radius: BorderRadius.circular(10.r),
                 imagePath: state.user?.data?.image != null
                     ? "${ApiEndPoint.userImageUrl}/${state.user!.data!.image}"
-                    : null, // Handle null image
+                    : null,
               ),
             ),
             Spacer(),
@@ -93,11 +96,7 @@ class HomeScreen extends StatelessWidget {
               alignment: Alignment.center,
               child: GestureDetector(
                 onTap: () {
-                  try {
-                    NavigatorService.pushNamed(AppRoutes.addUpdateRoute);
-                  } catch (e) {
-                    log(e.toString());
-                  }
+                  NavigatorService.pushNamed(AppRoutes.addUpdateRoute);
                 },
                 child: Text(
                   text.text_addProperty,
@@ -234,5 +233,27 @@ class HomeScreen extends StatelessWidget {
         }
       },
     );
+  }
+
+  AppBar _buildAppBar(Lang text, BuildContext context) {
+    return AppBar(
+        title: Text(
+          text.apptitle.toUpperCase(),
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                context.read<HomeBloc>().add(OnLogOutButtonPressEvent());
+                NavigatorService.pushAndRemoveUntil(AppRoutes.signinRoute);
+              },
+              icon: Icon(Icons.logout_outlined))
+        ],
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary);
   }
 }

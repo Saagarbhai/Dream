@@ -37,3 +37,9 @@ class UpdatebuttonpressedEvent extends AddupdateEvent {
 }
 
 class DisposeEvent extends AddupdateEvent {}
+
+class RatingChangedEvent extends AddupdateEvent {
+  final double rating;
+
+  RatingChangedEvent(this.rating);
+}

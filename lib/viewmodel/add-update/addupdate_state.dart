@@ -20,6 +20,7 @@ class AddupdateState extends Equatable {
   final bool isInitialized;
   final Status addProductStatus;
   final String errorMessage;
+  final double rating;
 
   const AddupdateState({
     required this.formKey,
@@ -41,6 +42,7 @@ class AddupdateState extends Equatable {
     this.isInitialized = false,
     this.addProductStatus = Status.init,
     this.errorMessage = '',
+    this.rating = 0,
   });
 
   factory AddupdateState.initial() => AddupdateState(
@@ -66,6 +68,7 @@ class AddupdateState extends Equatable {
     bool? isInitialized,
     Status? addProductStatus,
     String? errorMessage,
+    double? rating,
   }) =>
       AddupdateState(
         formKey: formKey,
@@ -87,6 +90,7 @@ class AddupdateState extends Equatable {
         isInitialized: isInitialized ?? this.isInitialized,
         addProductStatus: addProductStatus ?? this.addProductStatus,
         errorMessage: errorMessage ?? this.errorMessage,
+        rating: rating ?? this.rating,
       );
 
   void dispose() {
@@ -125,5 +129,6 @@ class AddupdateState extends Equatable {
         isInitialized,
         addProductStatus,
         errorMessage,
+        rating,
       ];
 }

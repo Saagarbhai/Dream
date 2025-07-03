@@ -1,6 +1,9 @@
 {
   "@@locale": "en",
   "apptitle":"Dream Vila",
+  "title_details_Screen": "Property Details",
+  "title_add_Screen": " Add Property",
+  "title_update_Screen": "Edit Property",
 
   "text_sign_in": "Sign In",
   "text_sign_up": "Sign Up",

@@ -91,4 +91,11 @@ abstract class Validation {
     }
     return null;
   }
+
+  static String? validateImage(String? value, String? image) {
+    if (value == null || value.trim().isEmpty) {
+      return '$image is required';
+    }
+    return null;
+  }
 }

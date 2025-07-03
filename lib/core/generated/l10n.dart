@@ -60,6 +60,36 @@ class Lang {
     return Intl.message('Dream Vila', name: 'apptitle', desc: '', args: []);
   }
 
+  /// `Property Details`
+  String get title_details_Screen {
+    return Intl.message(
+      'Property Details',
+      name: 'title_details_Screen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Add Property`
+  String get title_add_Screen {
+    return Intl.message(
+      ' Add Property',
+      name: 'title_add_Screen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Property`
+  String get title_update_Screen {
+    return Intl.message(
+      'Edit Property',
+      name: 'title_update_Screen',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In`
   String get text_sign_in {
     return Intl.message('Sign In', name: 'text_sign_in', desc: '', args: []);

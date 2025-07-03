@@ -11,18 +11,26 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     on<LoadProductDetailEvent>(_loadProductDetailEvent);
   }
   void _changeIndexEvent(ChangeIndexEvent event, Emitter emit) {
-    emit(state.copyWith(currentIndex: event.index));
+    try {
+      emit(state.copyWith(currentIndex: event.index));
+    } catch (e) {
+      Logger.error("Error From ChangeIndexEvent : $e");
+    }
   }
 
   void _loadProductDetailEvent(
       LoadProductDetailEvent event, Emitter emit) async {
-    emit(state.copyWith(detailPageStatus: Status.loading));
-    final ProductFoundResponse response =
-        await propertyRepositotry.getOnePropertyDetail(event.id);
-    if (response.status == true) {
-      emit(state.copyWith(detailPageStatus: Status.success, data: response));
-    } else {
-      emit(state.copyWith(detailPageStatus: Status.failure, data: response));
+    try {
+      emit(state.copyWith(detailPageStatus: Status.loading));
+      final ProductFoundResponse response =
+          await propertyRepositotry.getOnePropertyDetail(event.id);
+      if (response.status == true) {
+        emit(state.copyWith(detailPageStatus: Status.success, data: response));
+      } else {
+        emit(state.copyWith(detailPageStatus: Status.failure, data: response));
+      }
+    } catch (e) {
+      Logger.error("Error From LoadProductDetailEvent : $e");
     }
   }
 }

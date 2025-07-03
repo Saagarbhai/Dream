@@ -7,13 +7,17 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<LoadSplashEvent>(_loadSplashEvent);
   }
   Future<void> _loadSplashEvent(LoadSplashEvent event, Emitter emit) async {
-    emit(state.copyWith(splashStatus: Status.loading));
-    bool result = await sharedPreferencesService.getUserIsLogin();
-    await Future.delayed(Duration(seconds: 3));
-    if (result) {
-      emit(state.copyWith(splashStatus: Status.success));
-    } else {
-      emit(state.copyWith(splashStatus: Status.failure));
+    try {
+      emit(state.copyWith(splashStatus: Status.loading));
+      bool result = await sharedPreferencesService.getUserIsLogin();
+      await Future.delayed(Duration(seconds: 3));
+      if (result) {
+        emit(state.copyWith(splashStatus: Status.success));
+      } else {
+        emit(state.copyWith(splashStatus: Status.failure));
+      }
+    } catch (e) {
+      Logger.error("Error From LoadSplashEvent : $e");
     }
   }
 }
